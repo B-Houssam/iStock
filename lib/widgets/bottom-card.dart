@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iStock/widgets/get-username.dart';
+import 'package:iStock/widgets/list-view.dart';
 
 class BottomCard extends StatefulWidget {
   BottomCard({Key key}) : super(key: key);
@@ -21,6 +22,7 @@ class _BottomCardState extends State<BottomCard> {
       child: Column(
         children: <Widget>[
           GetName(),
+          ListItems(),
         ],
       ),
     );

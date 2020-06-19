@@ -13,9 +13,9 @@ class _GetNameState extends State<GetName> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * .15,
+      height: MediaQuery.of(context).size.height * .13,
       child: Padding(
-        padding: const EdgeInsets.all(25.0),
+        padding: const EdgeInsets.all(25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -45,7 +45,7 @@ class _GetNameState extends State<GetName> {
             Padding(
               padding: const EdgeInsets.only(top: 5.0),
               child: Text(
-                "Voici la liste des produits a suivre",
+                "Voici la disponibilité des produits a suivre",
                 style: GoogleFonts.lato(
                   color: Colors.grey[500],
                   fontWeight: FontWeight.w400,
