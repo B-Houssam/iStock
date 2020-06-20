@@ -21,8 +21,8 @@ class _ItemState extends State<Item> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            width: MediaQuery.of(context).size.width * .23,
-            height: MediaQuery.of(context).size.width * .23,
+            width: MediaQuery.of(context).size.width * .19,
+            height: MediaQuery.of(context).size.width * .19,
             decoration: BoxDecoration(
               color: Colors.orange,
               borderRadius: BorderRadius.circular(20),
@@ -36,12 +36,12 @@ class _ItemState extends State<Item> {
                 "Item",
                 style: GoogleFonts.lato(
                   color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 21,
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width * .5,
+                width: MediaQuery.of(context).size.width * .55,
                 height: MediaQuery.of(context).size.height * .01,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -71,7 +71,7 @@ class _ItemState extends State<Item> {
                 "20 pièces dans le stock",
                 style: GoogleFonts.lato(
                   color: Color(0XFF2163CB),
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w600,
                   fontSize: 14,
                 ),
               ),

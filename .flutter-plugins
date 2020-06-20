@@ -2,3 +2,6 @@
 path_provider=/home/houssam/workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.11/
 path_provider_linux=/home/houssam/workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+1/
 path_provider_macos=/home/houssam/workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+3/
+url_launcher=/home/houssam/workspace/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.4.11/
+url_launcher_macos=/home/houssam/workspace/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+7/
+url_launcher_web=/home/houssam/workspace/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.1+6/
