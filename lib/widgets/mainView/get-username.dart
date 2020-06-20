@@ -15,7 +15,7 @@ class _GetNameState extends State<GetName> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * .13,
       child: Padding(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.only(top: 25, right: 25, left: 25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

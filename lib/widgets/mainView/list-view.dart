@@ -13,7 +13,7 @@ class _ListItemsState extends State<ListItems> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.only(top: 25, bottom: 25),
+        padding: const EdgeInsets.only(top: 25, bottom: 15),
         child: ListView(
           physics: BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,

@@ -16,7 +16,6 @@ class MainCard extends StatelessWidget {
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                //color: Color(0XFF32CD32),
                 gradient: LinearGradient(colors: [
                   Color(0XFF36D459),
                   Color(0XFF0BC53C),
@@ -32,8 +31,8 @@ class MainCard extends StatelessWidget {
               child: Opacity(
                 opacity: .3,
                 child: Container(
-                  width: 150,
-                  height: 150,
+                  width: MediaQuery.of(context).size.width * .35,
+                  height: MediaQuery.of(context).size.width * .35,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
@@ -47,8 +46,8 @@ class MainCard extends StatelessWidget {
               child: Opacity(
                 opacity: .4,
                 child: Container(
-                  width: 80,
-                  height: 80,
+                  width: MediaQuery.of(context).size.width * .19,
+                  height: MediaQuery.of(context).size.width * .19,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
@@ -66,66 +65,70 @@ class MainCard extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 30,
+              top: 10,
               right: 30,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Très Bien!",
-                    style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                //color: Colors.black,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Très Bien!",
+                      style: GoogleFonts.lato(
+                        color: Colors.white,
+                        fontSize: 27,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Text(
-                        "0",
-                        style: GoogleFonts.lato(
-                          color: Colors.white,
-                          fontSize: 50,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Alertes des\nproduits",
-                        textAlign: TextAlign.left,
-                        style: GoogleFonts.lato(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Row(
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Text(
-                          "Vérifier list produits",
+                          "0",
                           style: GoogleFonts.lato(
                             color: Colors.white,
+                            fontSize: 50,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
                         SizedBox(
                           width: 10,
                         ),
-                        Icon(
-                          FontAwesomeIcons.longArrowAltRight,
-                          color: Colors.white,
+                        Text(
+                          "Alertes des\nproduits",
+                          textAlign: TextAlign.left,
+                          style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            "Vérifier list produits",
+                            style: GoogleFonts.lato(
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.longArrowAltRight,
+                            color: Colors.white,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

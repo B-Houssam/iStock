@@ -9,15 +9,15 @@ class BackBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * .12,
+      height: MediaQuery.of(context).size.height * .13,
       child: Padding(
-        padding: EdgeInsets.all(25),
+        padding: EdgeInsets.only(left: 25, right: 25),
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
                 width: MediaQuery.of(context).size.width * .13,
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.width * .13,
                 child: RaisedButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(11),
@@ -29,7 +29,7 @@ class BackBar extends StatelessWidget {
                   child: Icon(
                     FontAwesomeIcons.chevronLeft,
                     color: Color(0XFF2163CB),
-                    size: 25,
+                    size: 20,
                   ),
                 ),
               ),

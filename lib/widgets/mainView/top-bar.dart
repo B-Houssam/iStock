@@ -10,13 +10,13 @@ class TopBar extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * .12,
       child: Padding(
-        padding: EdgeInsets.all(25),
+        padding: EdgeInsets.only(left: 25, right: 25),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width * .13,
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.width * .13,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(11),
@@ -32,7 +32,7 @@ class TopBar extends StatelessWidget {
             ),
             Container(
               width: MediaQuery.of(context).size.width * .13,
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context).size.width * .13,
               child: RaisedButton(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(11),

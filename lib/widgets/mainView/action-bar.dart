@@ -42,13 +42,13 @@ class _ActionState extends State<ActionB> {
                 ),
               )),
           Padding(
-            padding: EdgeInsets.only(left: 30, right: 30, top: 16, bottom: 20),
+            padding: EdgeInsets.only(left: 30, right: 30, bottom: 13),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width * .5,
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.width * .14,
                   decoration: BoxDecoration(
                     color: Color(0XFFF0A12F),
                     borderRadius: BorderRadius.circular(15),
@@ -79,8 +79,8 @@ class _ActionState extends State<ActionB> {
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * .18,
-                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width * .14,
+                  height: MediaQuery.of(context).size.width * .14,
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
