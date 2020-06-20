@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iStock/widgets/bottom-card.dart';
-import 'package:iStock/widgets/main-card.dart';
-import 'package:iStock/widgets/top-bar.dart';
-import 'package:iStock/widgets/action-bar.dart';
+import 'package:iStock/widgets/mainView/bottom-card.dart';
+import 'package:iStock/widgets/mainView/main-card.dart';
+import 'package:iStock/widgets/mainView/top-bar.dart';
+import 'package:iStock/widgets/mainView/action-bar.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);

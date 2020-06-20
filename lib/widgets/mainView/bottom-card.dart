@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iStock/widgets/get-username.dart';
-import 'package:iStock/widgets/list-view.dart';
+import 'package:iStock/widgets/mainView/get-username.dart';
+import 'package:iStock/widgets/mainView/list-view.dart';
 
 class BottomCard extends StatefulWidget {
   BottomCard({Key key}) : super(key: key);

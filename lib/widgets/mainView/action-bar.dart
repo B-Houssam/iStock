@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iStock/views/List-produits.dart';
 
 class ActionB extends StatefulWidget {
   ActionB({Key key}) : super(key: key);
@@ -52,34 +53,47 @@ class _ActionState extends State<ActionB> {
                     color: Color(0XFFF0A12F),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text(
-                        "Ajouter transaction",
-                        style: GoogleFonts.lato(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    color: Color(0XFFF0A12F),
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          "Ajouter transaction",
+                          style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      ),
-                      Icon(
-                        FontAwesomeIcons.plusCircle,
-                        color: Colors.white,
-                      ),
-                    ],
+                        Icon(
+                          FontAwesomeIcons.plusCircle,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * .18,
                   height: MediaQuery.of(context).size.height,
-                  decoration: BoxDecoration(
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     color: Color(0XFFF0A12F),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Icon(
-                    FontAwesomeIcons.list,
-                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => ALL()));
+                    },
+                    child: Icon(
+                      FontAwesomeIcons.list,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
