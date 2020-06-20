@@ -42,7 +42,11 @@ class _ActionState extends State<ActionB> {
                 ),
               )),
           Padding(
-            padding: EdgeInsets.only(left: 30, right: 30, bottom: 13),
+            padding: EdgeInsets.only(
+              left: 30,
+              right: 30,
+              bottom: MediaQuery.of(context).size.height * .035,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[

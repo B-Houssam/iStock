@@ -37,7 +37,7 @@ class BackBar extends StatelessWidget {
                 "Produits",
                 style: GoogleFonts.lato(
                   color: Color(0XFF2163CB),
-                  fontWeight: FontWeight.w900,
+                  fontWeight: FontWeight.w600,
                   fontSize: 23,
                 ),
               )

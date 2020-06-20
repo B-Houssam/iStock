@@ -24,6 +24,77 @@ class MainCard extends StatelessWidget {
                     topLeft: Radius.circular(30),
                     bottomRight: Radius.circular(30)),
               ),
+              padding: EdgeInsets.only(left: 25, right: 25, top: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Icon(
+                    FontAwesomeIcons.check,
+                    color: Colors.white,
+                    size: 80,
+                  ),
+                  Container(
+                    //color: Colors.black,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Très Bien!",
+                          style: GoogleFonts.lato(
+                            color: Colors.white,
+                            fontSize: 27,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Text(
+                              "0",
+                              style: GoogleFonts.lato(
+                                color: Colors.white,
+                                fontSize: 50,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Alertes des\nproduits",
+                              textAlign: TextAlign.left,
+                              style: GoogleFonts.lato(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "Vérifier list produits",
+                              style: GoogleFonts.lato(
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              FontAwesomeIcons.longArrowAltRight,
+                              color: Colors.white,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             Positioned(
               left: -25,
@@ -52,82 +123,6 @@ class MainCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: Colors.white,
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: 30,
-              left: 30,
-              child: Icon(
-                FontAwesomeIcons.check,
-                color: Colors.white,
-                size: 60,
-              ),
-            ),
-            Positioned(
-              top: 10,
-              right: 30,
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                //color: Colors.black,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      "Très Bien!",
-                      style: GoogleFonts.lato(
-                        color: Colors.white,
-                        fontSize: 27,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(
-                          "0",
-                          style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 50,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "Alertes des\nproduits",
-                          textAlign: TextAlign.left,
-                          style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 15.0),
-                      child: Row(
-                        children: <Widget>[
-                          Text(
-                            "Vérifier list produits",
-                            style: GoogleFonts.lato(
-                              color: Colors.white,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            FontAwesomeIcons.longArrowAltRight,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
               ),
             ),

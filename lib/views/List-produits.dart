@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iStock/widgets/allView/list.dart';
+import 'package:iStock/widgets/allView/status-bar.dart';
 import 'package:iStock/widgets/allView/top-bar.dart';
 
 class ALL extends StatefulWidget {
@@ -17,6 +19,8 @@ class _ALLState extends State<ALL> {
         child: Column(
           children: <Widget>[
             BackBar(),
+            StatusBar(),
+            ListAll(),
           ],
         ),
       ),
