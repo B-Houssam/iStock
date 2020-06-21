@@ -26,7 +26,7 @@ class _DrawState extends State<Draw> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
-                  height: MediaQuery.of(context).size.height * .3,
+                  height: MediaQuery.of(context).size.height * .31,
                   decoration: BoxDecoration(
                     color: Color(0XFFF0A12F),
                   ),
