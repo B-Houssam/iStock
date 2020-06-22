@@ -292,15 +292,15 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: <Widget>[
                   GetName(),
-                  _produits.length == 0
+                  _produits.length < 3
                       ? Expanded(
                           child: Center(
-                            child: CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation(Color(0XFFF0A12F)),
-                              backgroundColor: Colors.grey[300],
+                              child: Text(
+                            "Commencer par ajouter des produits",
+                            style: GoogleFonts.lato(
+                              color: Colors.grey[400],
                             ),
-                          ),
+                          )),
                         )
                       : Expanded(
                           child: Padding(
