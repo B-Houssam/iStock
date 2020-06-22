@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iStock/views/HomePage.dart';
 
-class TopBar extends StatelessWidget {
-  const TopBar({Key key}) : super(key: key);
+class TopBar extends StatefulWidget {
+  TopBar({Key key}) : super(key: key);
 
+  @override
+  _TopBarState createState() => _TopBarState();
+}
+
+class _TopBarState extends State<TopBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +30,12 @@ class TopBar extends StatelessWidget {
                   ),
                   color: Colors.white,
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) => new HomePage()),
+                            (Route<dynamic> route) => false)
+                        .then((value) => setState(() {}));
                   },
                   child: Icon(
                     FontAwesomeIcons.chevronLeft,

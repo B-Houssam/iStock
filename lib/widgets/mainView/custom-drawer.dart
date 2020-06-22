@@ -26,9 +26,19 @@ class _DrawState extends State<Draw> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
+                  alignment: Alignment.bottomLeft,
                   height: MediaQuery.of(context).size.height * .31,
                   decoration: BoxDecoration(
                     color: Color(0XFFF0A12F),
+                  ),
+                  padding: EdgeInsets.only(left: 20, bottom: 20),
+                  child: Text(
+                    "iStock",
+                    style: GoogleFonts.lobster(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
                   ),
                 ),
                 Divider(

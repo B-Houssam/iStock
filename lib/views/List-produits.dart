@@ -30,8 +30,7 @@ class _ALLState extends State<ALL> {
   }
 
   _all(double allSize, int qte, int seuil) {
-    double x2 = (((qte * 100) / seuil) * allSize) / 100;
-    return x2;
+    return (((qte * 100) / seuil) * allSize) / 100;
   }
 
   _cal(int qte, int seuil) {

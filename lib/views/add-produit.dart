@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
+import 'package:iStock/views/HomePage.dart';
 import 'package:iStock/widgets/addView/top-bar.dart';
 
 class AddItem extends StatefulWidget {
@@ -352,7 +353,13 @@ class _AddItemState extends State<AddItem> {
                                     seuil: seuil,
                                   );
                                   save(p);
-                                  Navigator.of(context).pop(false);
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      new MaterialPageRoute(
+                                          builder: (context) => new HomePage()),
+                                      (Route<dynamic> route) =>
+                                          false).then(
+                                      (value) => setState(() {}));
                                 } else {
                                   print("not validated");
                                 }
