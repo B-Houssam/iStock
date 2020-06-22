@@ -30,8 +30,8 @@ class _StatusBarState extends State<StatusBar> {
             child: Stack(
               children: <Widget>[
                 Positioned(
-                  left: 20,
-                  top: 10,
+                  left: 15,
+                  top: MediaQuery.of(context).size.height * .05,
                   child: Opacity(
                     opacity: .4,
                     child: Icon(

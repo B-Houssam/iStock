@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/views/List-produits.dart';
+import 'package:iStock/views/add-produit.dart';
 
 class ActionB extends StatefulWidget {
   ActionB({Key key}) : super(key: key);
@@ -62,7 +63,10 @@ class _ActionState extends State<ActionB> {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     color: Color(0XFFF0A12F),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AddItem()));
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[

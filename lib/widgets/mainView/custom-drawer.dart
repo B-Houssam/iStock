@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+//import 'package:url_launcher/url_launcher.dart';
 
 class Draw extends StatefulWidget {
   Draw({Key key}) : super(key: key);
@@ -40,7 +40,7 @@ class _DrawState extends State<Draw> {
             ),
             GestureDetector(
               onTap: () {
-                launch('https://www.github.com/B-Houssam');
+                //launch('https://www.github.com/B-Houssam');
               },
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 40),

@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       drawer: Draw(),
       backgroundColor: Color(0XFFE9E9F9),
