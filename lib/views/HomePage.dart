@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
+import 'package:iStock/views/alerts-notif.dart';
 import 'package:iStock/widgets/mainView/custom-drawer.dart';
 import 'package:iStock/widgets/mainView/action-bar.dart';
 import 'package:iStock/widgets/mainView/get-username.dart';
@@ -117,7 +118,12 @@ class _HomePageState extends State<HomePage> {
                                   borderRadius: BorderRadius.circular(11),
                                 ),
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Alerts()));
+                                },
                                 child: Icon(
                                   FontAwesomeIcons.bell,
                                   color: Color(0XFF2163CB),
@@ -296,7 +302,7 @@ class _HomePageState extends State<HomePage> {
                       ? Expanded(
                           child: Center(
                               child: Text(
-                            "Commencer par ajouter des produits",
+                            "Commencer par ajouter plus de 3 produits",
                             style: GoogleFonts.lato(
                               color: Colors.grey[400],
                             ),

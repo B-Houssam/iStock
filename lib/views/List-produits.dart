@@ -97,12 +97,12 @@ class _ALLState extends State<ALL> {
                               children: <Widget>[
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * .17,
+                                      MediaQuery.of(context).size.width * .16,
                                   height:
-                                      MediaQuery.of(context).size.width * .17,
+                                      MediaQuery.of(context).size.width * .16,
                                   decoration: BoxDecoration(
                                     color: Colors.orange,
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
                                   alignment: Alignment.center,
                                   child: Text(

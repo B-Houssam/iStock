@@ -19,28 +19,13 @@ class _GetNameState extends State<GetName> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(
-                  "Hi,",
-                  style: GoogleFonts.lato(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 27,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
-                  child: Text(
-                    "Houssam",
-                    style: GoogleFonts.lato(
-                      color: Color(0XFF2163CB),
-                      fontWeight: FontWeight.w700,
-                      fontSize: 27,
-                    ),
-                  ),
-                ),
-              ],
+            Text(
+              "Bonjour,",
+              style: GoogleFonts.lato(
+                color: Color(0XFF2163CB),
+                fontWeight: FontWeight.w700,
+                fontSize: 27,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 5.0),
