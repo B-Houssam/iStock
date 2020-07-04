@@ -7,11 +7,11 @@ class DatabaseProvider {
   static const String TABLE_PRODUIT = 'produit';
 
   static const String COLUMN_ID = 'id';
-  static const String COLUMN_NOM = 'nom';
-  static const String COLUMN_DESC = 'description';
+  static const String COLUMN_REF = 'ref';
+  static const String COLUMN_CONS = 'consomation';
   static const String COLUMN_QTE = 'qte';
-  static const String COLUMN_FOUR = 'fournisseur';
-  static const String COLUMN_SEUIL = 'seuil';
+  static const String COLUMN_COUT = 'cout';
+  //static const String COLUMN_SEUIL = 'seuil';
 
   DatabaseProvider._();
   static final DatabaseProvider db = DatabaseProvider._();
@@ -33,16 +33,16 @@ class DatabaseProvider {
     String dbPath = await getDatabasesPath();
     return await openDatabase(
       join(dbPath, 'ProduitDB.db'),
-      version: 1,
+      version: 2,
       onCreate: (Database database, int version) async {
         print("Creating produit database");
         await database.execute("CREATE TABLE $TABLE_PRODUIT ("
             "$COLUMN_ID INTEGER PRIMARY KEY,"
-            "$COLUMN_NOM TEXT,"
-            "$COLUMN_DESC TEXT,"
+            "$COLUMN_REF TEXT,"
+            "$COLUMN_CONS INTEGER,"
             "$COLUMN_QTE INTEGER,"
-            "$COLUMN_FOUR TEXT,"
-            "$COLUMN_SEUIL INTEGER"
+            "$COLUMN_COUT INTEGER"
+            //"$COLUMN_SEUIL INTEGER"
             ")");
       },
     );
@@ -52,11 +52,11 @@ class DatabaseProvider {
     final db = await database;
     var produits = await db.query(TABLE_PRODUIT, columns: [
       COLUMN_ID,
-      COLUMN_DESC,
-      COLUMN_NOM,
+      COLUMN_REF,
+      COLUMN_CONS,
       COLUMN_QTE,
-      COLUMN_FOUR,
-      COLUMN_SEUIL
+      COLUMN_COUT //,
+      //COLUMN_SEUIL
     ]);
 
     List<Produit> productList = List<Produit>();

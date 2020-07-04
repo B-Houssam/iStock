@@ -106,7 +106,7 @@ class _ALLState extends State<ALL> {
                                   ),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    _produits[index].nom.substring(0, 2),
+                                    _produits[index].ref.substring(0, 2),
                                     style: GoogleFonts.lato(
                                         color: Colors.white,
                                         fontSize: 20,
@@ -118,7 +118,7 @@ class _ALLState extends State<ALL> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Text(
-                                      _produits[index].nom,
+                                      _produits[index].ref,
                                       style: GoogleFonts.lato(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w900,
@@ -158,14 +158,14 @@ class _ALLState extends State<ALL> {
                                                         .width *
                                                     .55,
                                                 _produits[index].qte,
-                                                _produits[index].seuil),
+                                                _produits[index].qte),
                                             height: MediaQuery.of(context)
                                                     .size
                                                     .height *
                                                 .008,
                                             decoration: BoxDecoration(
                                               color: _cal(_produits[index].qte,
-                                                  _produits[index].seuil),
+                                                  _produits[index].qte),
                                               borderRadius:
                                                   BorderRadius.circular(20),
                                             ),

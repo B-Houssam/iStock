@@ -17,6 +17,7 @@ class _AlertsState extends State<Alerts> {
   int _count = 0;
   List<Produit> _produits = [];
 
+/*
   _fetchAlerts() async {
     List<Produit> productList = await DatabaseProvider.db.getProduits();
     productList.forEach((element) {
@@ -34,11 +35,12 @@ class _AlertsState extends State<Alerts> {
     super.initState();
     _fetchAlerts();
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0XFFE9E9F9),
+      /*
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -132,6 +134,7 @@ class _AlertsState extends State<Alerts> {
           ],
         ),
       ),
+      */
     );
   }
 }

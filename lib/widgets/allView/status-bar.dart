@@ -29,7 +29,7 @@ class _StatusBarState extends State<StatusBar> {
   _check() async {
     List<Produit> productList = await DatabaseProvider.db.getProduits();
     productList.forEach((element) {
-      if (element.qte < element.seuil) {
+      if (element.qte < element.qte) {
         setState(() {
           col1 = Color(0XFFED213A);
           col2 = Color(0XFF93291E);

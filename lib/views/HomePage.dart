@@ -33,6 +33,7 @@ class _HomePageState extends State<HomePage> {
   );
   String mssg = "Très Bien!";
 
+/*
   _fetchProducts() async {
     List<Produit> productList = await DatabaseProvider.db.getProduits();
     setState(() {
@@ -62,6 +63,7 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
+  
 
   @override
   void initState() {
@@ -69,7 +71,7 @@ class _HomePageState extends State<HomePage> {
     _check();
     _fetchProducts();
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -336,10 +338,11 @@ class _HomePageState extends State<HomePage> {
                                       children: <Widget>[
                                         Align(
                                           alignment: Alignment.topLeft,
-                                          child: Text(
+                                          child: Text("test"
+                                              /*
                                             _all(
                                                   _produits[0].qte,
-                                                  _produits[0].seuil,
+                                                  //_produits[0].seuil,
                                                 ).toString() +
                                                 "%",
                                             style: GoogleFonts.lato(
@@ -347,14 +350,15 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 30,
                                               fontWeight: FontWeight.w900,
                                             ),
-                                          ),
+                                            */
+                                              ),
                                         ),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: <Widget>[
                                             Text(
-                                              _produits[0].nom,
+                                              _produits[0].ref,
                                               style: GoogleFonts.lato(
                                                 color: Colors.white,
                                                 fontSize: 20,
@@ -391,6 +395,7 @@ class _HomePageState extends State<HomePage> {
                                         Align(
                                           alignment: Alignment.topLeft,
                                           child: Text(
+                                            /*
                                             _all(
                                                   _produits[1].qte,
                                                   _produits[1].seuil,
@@ -401,6 +406,8 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 30,
                                               fontWeight: FontWeight.w900,
                                             ),
+                                            */
+                                            "test",
                                           ),
                                         ),
                                         Column(
@@ -408,7 +415,7 @@ class _HomePageState extends State<HomePage> {
                                               CrossAxisAlignment.end,
                                           children: <Widget>[
                                             Text(
-                                              _produits[1].nom,
+                                              _produits[1].ref,
                                               style: GoogleFonts.lato(
                                                 color: Colors.white,
                                                 fontSize: 20,
@@ -444,7 +451,8 @@ class _HomePageState extends State<HomePage> {
                                       children: <Widget>[
                                         Align(
                                           alignment: Alignment.topLeft,
-                                          child: Text(
+                                          child: Text("test"
+                                              /*
                                             _all(_produits[2].qte,
                                                         _produits[2].seuil)
                                                     .toString() +
@@ -454,14 +462,15 @@ class _HomePageState extends State<HomePage> {
                                               fontSize: 30,
                                               fontWeight: FontWeight.w900,
                                             ),
-                                          ),
+                                            */
+                                              ),
                                         ),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
                                           children: <Widget>[
                                             Text(
-                                              _produits[2].nom,
+                                              _produits[2].ref,
                                               style: GoogleFonts.lato(
                                                 color: Colors.white,
                                                 fontSize: 20,

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/views/List-produits.dart';
-import 'package:iStock/views/add-produit.dart';
+//import 'package:iStock/views/add-produit.dart';
+import 'package:iStock/views/ajouterOne.dart';
+import 'package:iStock/views/howMany.dart';
 
 class ActionB extends StatefulWidget {
   ActionB({Key key}) : super(key: key);
@@ -64,8 +66,10 @@ class _ActionState extends State<ActionB> {
                     ),
                     color: Color(0XFFF0A12F),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => AddItem()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AjouterTwo()));
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

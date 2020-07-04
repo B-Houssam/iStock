@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 import 'package:iStock/views/HomePage.dart';
-import 'package:iStock/widgets/addView/top-bar.dart';
 
 class AddItem extends StatefulWidget {
   AddItem({Key key}) : super(key: key);
@@ -38,7 +37,7 @@ class _AddItemState extends State<AddItem> {
         body: SafeArea(
           child: Column(
             children: <Widget>[
-              TopBar(),
+              //TopBar(),
               Expanded(
                 child: GestureDetector(
                   onTap: () {
