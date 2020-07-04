@@ -89,7 +89,7 @@ class _AjouterTwoState extends State<AjouterTwo> {
                                 .then((value) => setState(() {}));
                           },
                           child: Icon(
-                            FontAwesomeIcons.chevronLeft,
+                            FontAwesomeIcons.times,
                             color: Color(0XFF2163CB),
                             size: 20,
                           ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iStock/models/Articles.dart';
+import 'package:iStock/db/db-provider.dart';
+import 'package:iStock/models/produit.dart';
 import 'package:iStock/views/HomePage.dart';
+import 'package:iStock/views/detalisAvant.dart';
 
 class AjouterOne extends StatefulWidget {
   final int nb;
@@ -14,17 +16,25 @@ class AjouterOne extends StatefulWidget {
 
 class _AjouterOneState extends State<AjouterOne> {
   final keys = List<GlobalKey<FormState>>();
-  final items = List<Article>();
+  final items = List<Produit>();
 
   @override
   void initState() {
     for (var i = 0; i < widget.nb; i++) {
       final key = new GlobalKey<FormState>();
       keys.add(key);
-      var art = Article();
+      var art = Produit();
       items.add(art);
     }
     super.initState();
+  }
+
+  save(Produit p) async {
+    Produit test;
+    test = await DatabaseProvider.db.insert(p);
+    if (test != null) {
+      print("inserted !");
+    }
   }
 
   @override
@@ -32,7 +42,6 @@ class _AjouterOneState extends State<AjouterOne> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Color(0XFFE9E9F9),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -62,7 +71,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                 .then((value) => setState(() {}));
                           },
                           child: Icon(
-                            FontAwesomeIcons.chevronLeft,
+                            FontAwesomeIcons.times,
                             color: Color(0XFF2163CB),
                             size: 20,
                           ),
@@ -77,14 +86,14 @@ class _AjouterOneState extends State<AjouterOne> {
                             color: Colors.white,
                             onPressed: () {
                               for (var i = 0; i < widget.nb; i++) {
-                                print(
-                                  "" +
-                                      items[i].ref +
-                                      items[i].qte.toString() +
-                                      items[i].cons.toString() +
-                                      items[i].cout.toString() +
-                                      "\n",
-                                );
+                                if (keys[i].currentState.validate()) {
+                                  save(items[i]);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              new AjouterTree()));
+                                }
                               }
                             },
                             child: Text(
@@ -123,7 +132,7 @@ class _AjouterOneState extends State<AjouterOne> {
                         padding: EdgeInsets.only(top: 5, bottom: 20),
                         itemBuilder: (context, index) {
                           return Container(
-                            height: 210,
+                            height: 330,
                             padding: EdgeInsets.all(20),
                             child: Form(
                               key: keys[index],
@@ -142,6 +151,50 @@ class _AjouterOneState extends State<AjouterOne> {
                                   SizedBox(
                                     height: 10,
                                   ),
+                                  TextFormField(
+                                    validator: (val) {
+                                      if (val.isEmpty) {
+                                        return 'Obligatoire';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    onChanged: (val) {
+                                      setState(() {
+                                        items[index].id = int.parse(val);
+                                      });
+                                    },
+                                    decoration: const InputDecoration(
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.grey, width: 1.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.grey, width: 1.0),
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.grey, width: 1.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.red, width: 1.0),
+                                      ),
+                                      labelText: 'ID unique',
+                                      border: InputBorder.none,
+                                      counter: const SizedBox(),
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    maxLines: 1,
+                                    maxLength: 1024,
+                                    textCapitalization:
+                                        TextCapitalization.sentences,
+                                    //readOnly: !_note.state.canEdit,
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -151,7 +204,6 @@ class _AjouterOneState extends State<AjouterOne> {
                                             MediaQuery.of(context).size.width *
                                                 .45,
                                         child: TextFormField(
-                                          /*
                                           validator: (val) {
                                             if (val.isEmpty) {
                                               return 'Obligatoire';
@@ -159,7 +211,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                               return null;
                                             }
                                           },
-                                           */
+
                                           onChanged: (val) {
                                             setState(() {
                                               items[index].ref = val;
@@ -205,7 +257,6 @@ class _AjouterOneState extends State<AjouterOne> {
                                       ),
                                       Expanded(
                                         child: TextFormField(
-                                          /*
                                           validator: (val) {
                                             if (val.isEmpty) {
                                               return 'Obligatoire';
@@ -213,7 +264,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                               return null;
                                             }
                                           },
-                                          */
+
                                           onChanged: (val) {
                                             setState(() {
                                               items[index].qte = int.parse(val);
@@ -265,7 +316,6 @@ class _AjouterOneState extends State<AjouterOne> {
                                             MediaQuery.of(context).size.width *
                                                 .45,
                                         child: TextFormField(
-                                          /*
                                           validator: (val) {
                                             if (val.isEmpty) {
                                               return 'Obligatoire';
@@ -273,7 +323,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                               return null;
                                             }
                                           },
-                                          */
+
                                           onChanged: (val) {
                                             setState(() {
                                               items[index].cout =
@@ -307,7 +357,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                             border: InputBorder.none,
                                             counter: const SizedBox(),
                                           ),
-                                          keyboardType: TextInputType.text,
+                                          keyboardType: TextInputType.number,
                                           maxLines: 1,
                                           maxLength: 1024,
                                           textCapitalization:
@@ -320,7 +370,6 @@ class _AjouterOneState extends State<AjouterOne> {
                                       ),
                                       Expanded(
                                         child: TextFormField(
-                                          /*
                                           validator: (val) {
                                             if (val.isEmpty) {
                                               return 'Obligatoire';
@@ -328,10 +377,9 @@ class _AjouterOneState extends State<AjouterOne> {
                                               return null;
                                             }
                                           },
-                                          */
                                           onChanged: (val) {
                                             setState(() {
-                                              items[index].cons =
+                                              items[index].consomation =
                                                   int.parse(val);
                                             });
                                           },
