@@ -23,8 +23,15 @@ class _SplashState extends State<Splash> {
 
   _go() async {
     Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
+  }
+
+/*
+  _go() async {
+    Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => AjouterTree()));
   }
+*/
 
   @override
   Widget build(BuildContext context) {

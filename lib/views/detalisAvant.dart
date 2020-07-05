@@ -16,8 +16,10 @@ class AjouterTree extends StatefulWidget {
 class _AjouterTreeState extends State<AjouterTree> {
   List<Produit> _produitsOrdC = [];
   List<Produit> _produitsOrdCs = [];
+  List<Produit> _produitsOrdQ = [];
   List<int> cumule = [];
   List<int> cumuleC = [];
+  List<int> cumuleQ = [];
   int coutTotal = 0;
   int qteTotal = 0;
   int consTotal = 0;
@@ -35,6 +37,17 @@ class _AjouterTreeState extends State<AjouterTree> {
     //_buildData();
   }
 
+  _fetchQte() async {
+    List<Produit> productList = await DatabaseProvider.db.getProduitsOrdreQte();
+
+    setState(() {
+      _produitsOrdQ = productList;
+    });
+
+    _getTotalQ();
+    _getCumulesQ();
+  }
+
   _fetchConso() async {
     List<Produit> productListC =
         await DatabaseProvider.db.getProduitsOrdreCons();
@@ -43,6 +56,23 @@ class _AjouterTreeState extends State<AjouterTree> {
     });
     _getTotalCons();
     _getCumulesC();
+  }
+
+  _getTotalQ() {
+    for (var i = 0; i < _produitsOrdQ.length; i++) {
+      qteTotal = qteTotal + _produitsOrdQ[i].qte;
+    }
+  }
+
+  _getCumulesQ() {
+    for (var i = 0; i < _produitsOrdQ.length; i++) {
+      if (i == 0) {
+        cumuleQ.add(((_produitsOrdQ[i].qte) * 100 / qteTotal).round());
+      } else {
+        cumuleQ.add(
+            ((_produitsOrdQ[i].qte) * 100 / qteTotal).round() + cumuleQ[i - 1]);
+      }
+    }
   }
 
   _getCumulesC() {
@@ -64,27 +94,6 @@ class _AjouterTreeState extends State<AjouterTree> {
     }
   }
 
-/*
-  _buildData() {
-    for (var i = 0; i < _produitsOrdC.length; i++) {
-      data.add(new CouData(
-          _produitsOrdC[_produitsOrdC.length - (i + 1)].qte, cumule[i]));
-    }
-  }
-
-  _getSeriesData() {
-    List<charts.Series<CouData, int>> series = [
-      charts.Series(
-          id: "Cout",
-          data: data,
-          domainFn: (CouData series, _) => series.qte,
-          measureFn: (CouData series, _) => series.cumul,
-          colorFn: (CouData series, _) =>
-              charts.MaterialPalette.blue.shadeDefault)
-    ];
-    return series;
-  }
-*/
   _getTotalCout() {
     for (var i = 0; i < _produitsOrdC.length; i++) {
       coutTotal = coutTotal + _produitsOrdC[i].cout;
@@ -107,6 +116,7 @@ class _AjouterTreeState extends State<AjouterTree> {
     super.initState();
     _fetchProducts();
     _fetchConso();
+    _fetchQte();
   }
 
   @override
@@ -148,6 +158,13 @@ class _AjouterTreeState extends State<AjouterTree> {
                             ),
                           ),
                         ),
+                        Text(
+                          "Visualisation du magasin",
+                          style: GoogleFonts.lato(
+                            color: Color(0XFF2163CB),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                         Container(
                           height: MediaQuery.of(context).size.width * .13,
                           child: RaisedButton(
@@ -169,317 +186,487 @@ class _AjouterTreeState extends State<AjouterTree> {
               ),
               //////////////////////////
               Expanded(
-                  child: GestureDetector(
-                      onTap: () {
-                        FocusScope.of(context).requestFocus(new FocusNode());
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          ),
-                          alignment: Alignment.center,
-                          child: ListView(
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.only(left: 20, right: 20),
-                                width: MediaQuery.of(context).size.width,
-                                height: 100,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      "Cout: ",
-                                      style: GoogleFonts.lato(
-                                        color: Color(0XFF2163CB),
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 25,
+                  child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      alignment: Alignment.center,
+                      child: _produitsOrdC.length == 0 ||
+                              _produitsOrdCs.length == 0 ||
+                              _produitsOrdQ.length == 0
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.grey[300],
+                                valueColor:
+                                    AlwaysStoppedAnimation(Color(0XFF2163CB)),
+                              ),
+                            )
+                          : ListView(
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 100,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "Cout: ",
+                                        style: GoogleFonts.lato(
+                                          color: Color(0XFF2163CB),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 25,
+                                        ),
                                       ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            "Référence",
-                                            style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w700,
-                                                color: Color(0XFF2163CB)),
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            "Cout",
-                                            style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w700,
-                                                color: Color(0XFF2163CB)),
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            "Cout %",
-                                            style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w700,
-                                                color: Color(0XFF2163CB)),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
                                             child: Text(
-                                              "cumulé",
+                                              "Référence",
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0XFF2163CB)),
                                             ),
-                                            alignment: Alignment.centerRight,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * .25,
-                                child: ListView.separated(
-                                  padding: EdgeInsets.only(
-                                      bottom: 20, left: 20, right: 20),
-                                  physics: BouncingScrollPhysics(),
-                                  separatorBuilder: (context, index) {
-                                    return Divider(
-                                      color: Colors.grey[300],
-                                    );
-                                  },
-                                  itemCount: _produitsOrdC.length,
-                                  itemBuilder: (context, index) {
-                                    return Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            _produitsOrdC[index].ref,
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            _produitsOrdC[index]
-                                                .cout
-                                                .toString(),
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text("" +
-                                              ((_produitsOrdC[index].cout) *
-                                                      100 /
-                                                      coutTotal)
-                                                  .round()
-                                                  .toString()),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            child: cumule.length != 0
-                                                ? Text(
-                                                    cumule[index].toString(),
-                                                  )
-                                                : Text("-"),
-                                            alignment: Alignment.centerRight,
-                                          ),
-                                        ),
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ),
-                              /////////////
-                              Container(
-                                padding: EdgeInsets.only(left: 20, right: 20),
-                                width: MediaQuery.of(context).size.width,
-                                height: 100,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      "Consomation: ",
-                                      style: GoogleFonts.lato(
-                                        color: Color(0XFF2163CB),
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 25,
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            "Référence",
-                                            style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w700,
-                                                color: Color(0XFF2163CB)),
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            "Conso",
-                                            style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w700,
-                                                color: Color(0XFF2163CB)),
-                                          ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            "Conso %",
-                                            style: GoogleFonts.lato(
-                                                fontWeight: FontWeight.w700,
-                                                color: Color(0XFF2163CB)),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Container(
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
                                             child: Text(
-                                              "cumulé",
+                                              "Cout",
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0XFF2163CB)),
                                             ),
-                                            alignment: Alignment.centerRight,
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              "Cout %",
+                                              style: GoogleFonts.lato(
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color(0XFF2163CB)),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              child: Text(
+                                                "cumulé",
+                                                style: GoogleFonts.lato(
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Color(0XFF2163CB)),
+                                              ),
+                                              alignment: Alignment.centerRight,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                height:
-                                    MediaQuery.of(context).size.height * .25,
-                                child: ListView.separated(
-                                  padding: EdgeInsets.only(
-                                      bottom: 20, left: 20, right: 20),
-                                  physics: BouncingScrollPhysics(),
-                                  separatorBuilder: (context, index) {
-                                    return Divider(
-                                      color: Colors.grey[300],
-                                    );
-                                  },
-                                  itemCount: _produitsOrdC.length,
-                                  itemBuilder: (context, index) {
-                                    return Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            _produitsOrdCs[index].ref,
+                                Container(
+                                  color: Colors.grey[100],
+                                  height:
+                                      MediaQuery.of(context).size.height * .25,
+                                  child: ListView.separated(
+                                    padding: EdgeInsets.only(
+                                        bottom: 20,
+                                        left: 20,
+                                        right: 20,
+                                        top: 10),
+                                    physics: BouncingScrollPhysics(),
+                                    separatorBuilder: (context, index) {
+                                      return Divider(
+                                        color: Colors.grey[300],
+                                      );
+                                    },
+                                    itemCount: _produitsOrdC.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              _produitsOrdC[index].ref,
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(
-                                            _produitsOrdCs[index]
-                                                .consomation
-                                                .toString(),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              _produitsOrdC[index]
+                                                  .cout
+                                                  .toString(),
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text("" +
-                                              ((_produitsOrdCs[index]
-                                                          .consomation) *
-                                                      100 /
-                                                      consTotal)
-                                                  .round()
-                                                  .toString()),
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            child: cumule.length != 0
-                                                ? Text(
-                                                    cumuleC[index].toString(),
-                                                  )
-                                                : Text("-"),
-                                            alignment: Alignment.centerRight,
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text("" +
+                                                ((_produitsOrdC[index].cout) *
+                                                        100 /
+                                                        coutTotal)
+                                                    .round()
+                                                    .toString()),
                                           ),
-                                        ),
-                                      ],
-                                    );
-                                  },
+                                          Expanded(
+                                            child: Container(
+                                              child: cumule.length != 0
+                                                  ? Text(
+                                                      cumule[index].toString(),
+                                                    )
+                                                  : Text("-"),
+                                              alignment: Alignment.centerRight,
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ))))
+                                /////////////
+                                Container(
+                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 100,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "Consomation: ",
+                                        style: GoogleFonts.lato(
+                                          color: Color(0XFF2163CB),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 25,
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              "Référence",
+                                              style: GoogleFonts.lato(
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color(0XFF2163CB)),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              "Conso",
+                                              style: GoogleFonts.lato(
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color(0XFF2163CB)),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              "Conso %",
+                                              style: GoogleFonts.lato(
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color(0XFF2163CB)),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              child: Text(
+                                                "cumulé",
+                                                style: GoogleFonts.lato(
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Color(0XFF2163CB)),
+                                              ),
+                                              alignment: Alignment.centerRight,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  color: Colors.grey[100],
+                                  height:
+                                      MediaQuery.of(context).size.height * .25,
+                                  child: ListView.separated(
+                                    padding: EdgeInsets.only(
+                                        bottom: 20,
+                                        left: 20,
+                                        right: 20,
+                                        top: 10),
+                                    physics: BouncingScrollPhysics(),
+                                    separatorBuilder: (context, index) {
+                                      return Divider(
+                                        color: Colors.grey[300],
+                                      );
+                                    },
+                                    itemCount: _produitsOrdC.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              _produitsOrdCs[index].ref,
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              _produitsOrdCs[index]
+                                                  .consomation
+                                                  .toString(),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text("" +
+                                                ((_produitsOrdCs[index]
+                                                            .consomation) *
+                                                        100 /
+                                                        consTotal)
+                                                    .round()
+                                                    .toString()),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              child: cumuleC.length != 0
+                                                  ? Text(
+                                                      cumuleC[index].toString(),
+                                                    )
+                                                  : Text("-"),
+                                              alignment: Alignment.centerRight,
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                ),
+                                ///////////////
+                                Container(
+                                  padding: EdgeInsets.only(left: 20, right: 20),
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 100,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "Nombre de pièces: ",
+                                        style: GoogleFonts.lato(
+                                          color: Color(0XFF2163CB),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 25,
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              "Référence",
+                                              style: GoogleFonts.lato(
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color(0XFF2163CB)),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              "NBP",
+                                              style: GoogleFonts.lato(
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color(0XFF2163CB)),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              "NBP %",
+                                              style: GoogleFonts.lato(
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Color(0XFF2163CB)),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              child: Text(
+                                                "cumulé",
+                                                style: GoogleFonts.lato(
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Color(0XFF2163CB)),
+                                              ),
+                                              alignment: Alignment.centerRight,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  color: Colors.grey[100],
+                                  height:
+                                      MediaQuery.of(context).size.height * .25,
+                                  child: ListView.separated(
+                                    padding: EdgeInsets.only(
+                                        bottom: 20,
+                                        left: 20,
+                                        right: 20,
+                                        top: 10),
+                                    physics: BouncingScrollPhysics(),
+                                    separatorBuilder: (context, index) {
+                                      return Divider(
+                                        color: Colors.grey[300],
+                                      );
+                                    },
+                                    itemCount: _produitsOrdC.length,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              _produitsOrdQ[index].ref,
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text(
+                                              _produitsOrdQ[index]
+                                                  .qte
+                                                  .toString(),
+                                            ),
+                                          ),
+                                          Container(
+                                            alignment: Alignment.center,
+                                            width: (MediaQuery.of(context)
+                                                        .size
+                                                        .width -
+                                                    40) /
+                                                4,
+                                            child: Text("" +
+                                                ((_produitsOrdQ[index].qte) *
+                                                        100 /
+                                                        qteTotal)
+                                                    .round()
+                                                    .toString()),
+                                          ),
+                                          Expanded(
+                                            child: Container(
+                                              child: cumuleQ.length != 0
+                                                  ? Text(
+                                                      cumuleQ[index].toString(),
+                                                    )
+                                                  : Text("-"),
+                                              alignment: Alignment.centerRight,
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            )))
             ],
           ),
         ));

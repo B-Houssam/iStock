@@ -77,6 +77,13 @@ class _AjouterOneState extends State<AjouterOne> {
                           ),
                         ),
                       ),
+                      Text(
+                        "Insertion des produits",
+                        style: GoogleFonts.lato(
+                          color: Color(0XFF2163CB),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                       Container(
                         height: MediaQuery.of(context).size.width * .13,
                         child: RaisedButton(
@@ -109,323 +116,295 @@ class _AjouterOneState extends State<AjouterOne> {
             ),
             //---------//
             Expanded(
-              child: GestureDetector(
-                  onTap: () {
-                    FocusScope.of(context).requestFocus(new FocusNode());
-                  },
-                  child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            //topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30)),
-                        color: Colors.white,
-                      ),
-                      alignment: Alignment.center,
-                      child: ListView.separated(
-                        separatorBuilder: (context, index) {
-                          return Divider(
-                            color: Colors.grey[400],
-                          );
-                        },
-                        itemCount: widget.nb,
-                        physics: BouncingScrollPhysics(),
-                        padding: EdgeInsets.only(top: 5, bottom: 20),
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: 330,
-                            padding: EdgeInsets.all(20),
-                            child: Form(
-                              key: keys[index],
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        //topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30)),
+                    color: Colors.white,
+                  ),
+                  alignment: Alignment.center,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) {
+                      return Divider(
+                        color: Colors.grey[400],
+                      );
+                    },
+                    itemCount: widget.nb,
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.only(top: 5, bottom: 20),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        height: 330,
+                        padding: EdgeInsets.all(20),
+                        child: Form(
+                          key: keys[index],
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                "PRODUIT: " + (index + 1).toString(),
+                                style: GoogleFonts.lato(
+                                  color: Color(0XFF2163CB),
+                                  fontSize: 15,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              TextFormField(
+                                validator: (val) {
+                                  if (val.isEmpty) {
+                                    return 'Obligatoire';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                onChanged: (val) {
+                                  setState(() {
+                                    items[index].id = int.parse(val);
+                                  });
+                                },
+                                decoration: const InputDecoration(
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 1.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 1.0),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.grey, width: 1.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: Colors.red, width: 1.0),
+                                  ),
+                                  labelText: 'ID unique',
+                                  border: InputBorder.none,
+                                  counter: const SizedBox(),
+                                ),
+                                keyboardType: TextInputType.number,
+                                maxLines: 1,
+                                maxLength: 1024,
+                                textCapitalization:
+                                    TextCapitalization.sentences,
+                                //readOnly: !_note.state.canEdit,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Row(
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Text(
-                                    "PRODUIT: " + (index + 1).toString(),
-                                    style: GoogleFonts.lato(
-                                      color: Color(0XFF2163CB),
-                                      fontSize: 15,
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .45,
+                                    child: TextFormField(
+                                      validator: (val) {
+                                        if (val.isEmpty) {
+                                          return 'Obligatoire';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+
+                                      onChanged: (val) {
+                                        setState(() {
+                                          items[index].ref = val;
+                                        });
+                                      },
+
+                                      decoration: const InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.red, width: 1.0),
+                                        ),
+                                        labelText: 'Référence',
+                                        border: InputBorder.none,
+                                        counter: const SizedBox(),
+                                      ),
+                                      keyboardType: TextInputType.text,
+                                      maxLines: 1,
+                                      maxLength: 1024,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                      //readOnly: !_note.state.canEdit,
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    width: 10,
                                   ),
-                                  TextFormField(
-                                    validator: (val) {
-                                      if (val.isEmpty) {
-                                        return 'Obligatoire';
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    onChanged: (val) {
-                                      setState(() {
-                                        items[index].id = int.parse(val);
-                                      });
-                                    },
-                                    decoration: const InputDecoration(
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.0),
+                                  Expanded(
+                                    child: TextFormField(
+                                      validator: (val) {
+                                        if (val.isEmpty) {
+                                          return 'Obligatoire';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+
+                                      onChanged: (val) {
+                                        setState(() {
+                                          items[index].qte = int.parse(val);
+                                        });
+                                      },
+
+                                      decoration: const InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.red, width: 1.0),
+                                        ),
+                                        labelText: 'Nombre de pièces',
+                                        border: InputBorder.none,
+                                        counter: const SizedBox(),
                                       ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.0),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.grey, width: 1.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.red, width: 1.0),
-                                      ),
-                                      labelText: 'ID unique',
-                                      border: InputBorder.none,
-                                      counter: const SizedBox(),
+                                      keyboardType: TextInputType.number,
+                                      maxLines: 1,
+                                      maxLength: 1024,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                      //readOnly: !_note.state.canEdit,
                                     ),
-                                    keyboardType: TextInputType.number,
-                                    maxLines: 1,
-                                    maxLength: 1024,
-                                    textCapitalization:
-                                        TextCapitalization.sentences,
-                                    //readOnly: !_note.state.canEdit,
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .45,
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            if (val.isEmpty) {
-                                              return 'Obligatoire';
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-
-                                          onChanged: (val) {
-                                            setState(() {
-                                              items[index].ref = val;
-                                            });
-                                          },
-
-                                          decoration: const InputDecoration(
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.red,
-                                                  width: 1.0),
-                                            ),
-                                            labelText: 'Référence',
-                                            border: InputBorder.none,
-                                            counter: const SizedBox(),
-                                          ),
-                                          keyboardType: TextInputType.text,
-                                          maxLines: 1,
-                                          maxLength: 1024,
-                                          textCapitalization:
-                                              TextCapitalization.sentences,
-                                          //readOnly: !_note.state.canEdit,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            if (val.isEmpty) {
-                                              return 'Obligatoire';
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-
-                                          onChanged: (val) {
-                                            setState(() {
-                                              items[index].qte = int.parse(val);
-                                            });
-                                          },
-
-                                          decoration: const InputDecoration(
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.red,
-                                                  width: 1.0),
-                                            ),
-                                            labelText: 'Nombre de pièces',
-                                            border: InputBorder.none,
-                                            counter: const SizedBox(),
-                                          ),
-                                          keyboardType: TextInputType.number,
-                                          maxLines: 1,
-                                          maxLength: 1024,
-                                          textCapitalization:
-                                              TextCapitalization.sentences,
-                                          //readOnly: !_note.state.canEdit,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                .45,
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            if (val.isEmpty) {
-                                              return 'Obligatoire';
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-
-                                          onChanged: (val) {
-                                            setState(() {
-                                              items[index].cout =
-                                                  int.parse(val);
-                                            });
-                                          },
-
-                                          decoration: const InputDecoration(
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.red,
-                                                  width: 1.0),
-                                            ),
-                                            labelText: 'Cout',
-                                            border: InputBorder.none,
-                                            counter: const SizedBox(),
-                                          ),
-                                          keyboardType: TextInputType.number,
-                                          maxLines: 1,
-                                          maxLength: 1024,
-                                          textCapitalization:
-                                              TextCapitalization.sentences,
-                                          //readOnly: !_note.state.canEdit,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: TextFormField(
-                                          validator: (val) {
-                                            if (val.isEmpty) {
-                                              return 'Obligatoire';
-                                            } else {
-                                              return null;
-                                            }
-                                          },
-                                          onChanged: (val) {
-                                            setState(() {
-                                              items[index].consomation =
-                                                  int.parse(val);
-                                            });
-                                          },
-
-                                          decoration: const InputDecoration(
-                                            focusedBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            focusedErrorBorder:
-                                                OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.grey,
-                                                  width: 1.0),
-                                            ),
-                                            errorBorder: OutlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.red,
-                                                  width: 1.0),
-                                            ),
-                                            labelText: 'Consomation',
-                                            border: InputBorder.none,
-                                            counter: const SizedBox(),
-                                          ),
-                                          keyboardType: TextInputType.number,
-                                          maxLines: 1,
-                                          maxLength: 1024,
-                                          textCapitalization:
-                                              TextCapitalization.sentences,
-                                          //readOnly: !_note.state.canEdit,
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                 ],
                               ),
-                            ),
-                          );
-                        },
-                      ))),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .45,
+                                    child: TextFormField(
+                                      validator: (val) {
+                                        if (val.isEmpty) {
+                                          return 'Obligatoire';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+
+                                      onChanged: (val) {
+                                        setState(() {
+                                          items[index].cout = int.parse(val);
+                                        });
+                                      },
+
+                                      decoration: const InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.red, width: 1.0),
+                                        ),
+                                        labelText: 'Cout',
+                                        border: InputBorder.none,
+                                        counter: const SizedBox(),
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                      maxLines: 1,
+                                      maxLength: 1024,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                      //readOnly: !_note.state.canEdit,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: TextFormField(
+                                      validator: (val) {
+                                        if (val.isEmpty) {
+                                          return 'Obligatoire';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      onChanged: (val) {
+                                        setState(() {
+                                          items[index].consomation =
+                                              int.parse(val);
+                                        });
+                                      },
+
+                                      decoration: const InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.red, width: 1.0),
+                                        ),
+                                        labelText: 'Consomation',
+                                        border: InputBorder.none,
+                                        counter: const SizedBox(),
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                      maxLines: 1,
+                                      maxLength: 1024,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                      //readOnly: !_note.state.canEdit,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  )),
             )
           ],
         ),

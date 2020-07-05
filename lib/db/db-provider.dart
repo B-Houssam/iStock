@@ -97,6 +97,20 @@ class DatabaseProvider {
     return productList;
   }
 
+  Future<List<Produit>> getProduitsOrdreQte() async {
+    final db = await database;
+    var produits = await db.query(TABLE_PRODUIT, orderBy: "$COLUMN_QTE DESC");
+
+    List<Produit> productList = List<Produit>();
+
+    produits.forEach((current) {
+      Produit p = Produit.fromMap(current);
+      productList.add(p);
+    });
+
+    return productList;
+  }
+
   Future<Produit> insert(Produit p) async {
     final db = await database;
     p.id = await db.insert(TABLE_PRODUIT, p.toMap());
