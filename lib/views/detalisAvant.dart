@@ -260,7 +260,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                                     40) /
                                                 4,
                                             child: Text(
-                                              "Cout %",
+                                              "% Cout",
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0XFF2163CB)),
@@ -269,7 +269,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                           Expanded(
                                             child: Container(
                                               child: Text(
-                                                "cumulé",
+                                                "% cumulé",
                                                 style: GoogleFonts.lato(
                                                     fontWeight: FontWeight.w700,
                                                     color: Color(0XFF2163CB)),
@@ -414,7 +414,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                                     40) /
                                                 4,
                                             child: Text(
-                                              "Conso %",
+                                              "% Conso",
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0XFF2163CB)),
@@ -423,7 +423,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                           Expanded(
                                             child: Container(
                                               child: Text(
-                                                "cumulé",
+                                                "% cumulé",
                                                 style: GoogleFonts.lato(
                                                     fontWeight: FontWeight.w700,
                                                     color: Color(0XFF2163CB)),
@@ -555,7 +555,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                                     40) /
                                                 4,
                                             child: Text(
-                                              "NBP",
+                                              "NdP",
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0XFF2163CB)),
@@ -569,7 +569,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                                     40) /
                                                 4,
                                             child: Text(
-                                              "NBP %",
+                                              "% NdP",
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0XFF2163CB)),
@@ -578,7 +578,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                           Expanded(
                                             child: Container(
                                               child: Text(
-                                                "cumulé",
+                                                "% cumulé",
                                                 style: GoogleFonts.lato(
                                                     fontWeight: FontWeight.w700,
                                                     color: Color(0XFF2163CB)),
