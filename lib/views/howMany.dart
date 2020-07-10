@@ -104,7 +104,7 @@ class _AjouterTwoState extends State<AjouterTwo> {
                             color: Colors.white,
                             onPressed: () {
                               if (_formKey.currentState.validate()) {
-                                print(nb);
+                                //print(nb);
                                 _formKey.currentState.save();
                                 Navigator.push(
                                     context,

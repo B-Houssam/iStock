@@ -5,6 +5,7 @@ import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 
 import 'HomePage.dart';
+import 'ajouterSeuil.dart';
 
 class AjouterTree extends StatefulWidget {
   AjouterTree({Key key}) : super(key: key);
@@ -172,7 +173,15 @@ class _AjouterTreeState extends State<AjouterTree> {
                                 borderRadius: BorderRadius.circular(11),
                               ),
                               color: Colors.white,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                        context,
+                                        new MaterialPageRoute(
+                                            builder: (context) =>
+                                                new AjouterFour()),
+                                        (Route<dynamic> route) => false)
+                                    .then((value) => setState(() {}));
+                              },
                               child: Text(
                                 "Suivant",
                                 style: GoogleFonts.lato(
