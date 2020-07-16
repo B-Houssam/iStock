@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/views/List-produits.dart';
 //import 'package:iStock/views/add-produit.dart';
-import 'package:iStock/views/ajouterOne.dart';
+//import 'package:iStock/views/ajouterOne.dart';
 import 'package:iStock/views/howMany.dart';
 
 class ActionB extends StatefulWidget {

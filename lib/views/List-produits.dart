@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
+import 'package:iStock/views/modify-product.dart';
 import 'package:iStock/widgets/allView/status-bar.dart';
 import 'package:iStock/widgets/allView/top-bar.dart';
 
@@ -60,7 +61,7 @@ class _ALLState extends State<ALL> {
         child: Column(
           children: <Widget>[
             BackBar(),
-            StatusBar(),
+            //StatusBar(),
             _produits.length == 0
                 ? Expanded(
                     child: Center(
@@ -90,16 +91,16 @@ class _ALLState extends State<ALL> {
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * .14,
                             padding:
-                                EdgeInsets.only(top: 10, left: 20, right: 20),
+                                EdgeInsets.only(top: 10, left: 30, right: 30),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * .16,
+                                      MediaQuery.of(context).size.width * .15,
                                   height:
-                                      MediaQuery.of(context).size.width * .16,
+                                      MediaQuery.of(context).size.width * .15,
                                   decoration: BoxDecoration(
                                     color: Colors.orange,
                                     borderRadius: BorderRadius.circular(15),
@@ -128,54 +129,6 @@ class _ALLState extends State<ALL> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          .55,
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              .01,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Stack(
-                                        alignment: Alignment.centerLeft,
-                                        children: <Widget>[
-                                          Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .008,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[300],
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
-                                          ),
-                                          Container(
-                                            width: _all(
-                                                MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    .55,
-                                                _produits[index].qte,
-                                                _produits[index].qte),
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .008,
-                                            decoration: BoxDecoration(
-                                              color: _cal(_produits[index].qte,
-                                                  _produits[index].qte),
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 5,
-                                    ),
                                     Text(
                                       _produits[index].qte.toString() +
                                           " item dans le stock",
@@ -184,6 +137,32 @@ class _ALLState extends State<ALL> {
                                         fontWeight: FontWeight.w600,
                                         fontSize: 14,
                                       ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Text(
+                                          "Classe: " + "A",
+                                          style: GoogleFonts.lato(
+                                            color: Color(0XFF2163CB),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 20,
+                                        ),
+                                        Text(
+                                          "Seuil: " + "XX",
+                                          style: GoogleFonts.lato(
+                                            color: Color(0XFF2163CB),
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -197,7 +176,14 @@ class _ALLState extends State<ALL> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     color: Colors.white,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      //go to modify
+                                      Navigator.push(
+                                          context,
+                                          new MaterialPageRoute(
+                                            builder: (context) => new Modify(),
+                                          ));
+                                    },
                                     child: Icon(
                                       FontAwesomeIcons.pen,
                                       color: Color(0XFF2163CB),

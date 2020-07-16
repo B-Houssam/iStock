@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iStock/views/HomePage.dart';
+//import 'package:iStock/views/HomePage.dart';
 import 'package:iStock/views/detalisAvant.dart';
 
 class Splash extends StatefulWidget {

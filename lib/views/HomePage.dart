@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iStock/db/db-provider.dart';
+//import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 import 'package:iStock/views/alerts-notif.dart';
 import 'package:iStock/widgets/mainView/custom-drawer.dart';

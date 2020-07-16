@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:iStock/db/db-provider.dart';
-import 'package:iStock/models/produit.dart';
-import 'package:iStock/widgets/alertsView/top-bar.dart';
-import 'package:iStock/widgets/allView/status-bar.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:google_fonts/google_fonts.dart';
+//import 'package:iStock/db/db-provider.dart';
+//import 'package:iStock/models/produit.dart';
+//import 'package:iStock/widgets/alertsView/top-bar.dart';
+//import 'package:iStock/widgets/allView/status-bar.dart';
 
 class Alerts extends StatefulWidget {
   Alerts({Key key}) : super(key: key);
@@ -14,8 +14,8 @@ class Alerts extends StatefulWidget {
 }
 
 class _AlertsState extends State<Alerts> {
-  int _count = 0;
-  List<Produit> _produits = [];
+  //int _count = 0;
+  //List<Produit> _produits = [];
 
 /*
   _fetchAlerts() async {

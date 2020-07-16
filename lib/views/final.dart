@@ -263,7 +263,7 @@ class _AjouterFiveState extends State<AjouterFive> {
                                           cumule[index] > 0) {
                                         return Colors.red[100];
                                       } else {
-                                        if (cumule[index] > widget.a &&
+                                        if (cumule[index] >= widget.a &&
                                             cumule[index] < widget.b) {
                                           return Colors.green[100];
                                         } else {
@@ -428,7 +428,7 @@ class _AjouterFiveState extends State<AjouterFive> {
                                           cumuleC[index] > 0) {
                                         return Colors.red[100];
                                       } else {
-                                        if (cumuleC[index] > widget.a &&
+                                        if (cumuleC[index] >= widget.a &&
                                             cumuleC[index] < widget.b) {
                                           return Colors.green[100];
                                         } else {

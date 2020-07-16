@@ -76,8 +76,8 @@ class _DrawState extends State<Draw> {
                               color: Colors.white,
                             )),
                         Text(
-                          'Click here and\nvisit me on GitHub',
-                          textAlign: TextAlign.center,
+                          'Visitez le developpeur\nsur github',
+                          textAlign: TextAlign.left,
                           style: GoogleFonts.lato(
                             color: Colors.grey,
                           ),
