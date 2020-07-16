@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 import 'package:iStock/views/modify-product.dart';
-import 'package:iStock/widgets/allView/status-bar.dart';
+//import 'package:iStock/widgets/allView/status-bar.dart';
 import 'package:iStock/widgets/allView/top-bar.dart';
 
 class ALL extends StatefulWidget {
