@@ -15,7 +15,7 @@ class _BackBarState extends State<BackBar> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * .13,
+      height: MediaQuery.of(context).size.height * .12,
       child: Padding(
         padding: EdgeInsets.only(left: 25, right: 25),
         child: Row(

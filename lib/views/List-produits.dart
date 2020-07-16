@@ -61,6 +61,58 @@ class _ALLState extends State<ALL> {
         child: Column(
           children: <Widget>[
             BackBar(),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 40,
+              padding: EdgeInsets.only(left: 25, right: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.red[200],
+                        ),
+                      ),
+                      Text(
+                        " : Classe A",
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.green[200],
+                        ),
+                      ),
+                      Text(
+                        " : Classe B",
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.blue[200],
+                        ),
+                      ),
+                      Text(
+                        " : Classe C",
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
             //StatusBar(),
             _produits.length == 0
                 ? Expanded(
@@ -141,28 +193,13 @@ class _ALLState extends State<ALL> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    Row(
-                                      children: <Widget>[
-                                        Text(
-                                          "Classe: " + "A",
-                                          style: GoogleFonts.lato(
-                                            color: Color(0XFF2163CB),
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 20,
-                                        ),
-                                        Text(
-                                          "Seuil: " + "XX",
-                                          style: GoogleFonts.lato(
-                                            color: Color(0XFF2163CB),
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
+                                    Text(
+                                      "Seuil: " + "XX",
+                                      style: GoogleFonts.lato(
+                                        color: Color(0XFF2163CB),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   ],
                                 ),
