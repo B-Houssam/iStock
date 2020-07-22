@@ -20,6 +20,8 @@ class _AjouterFiveState extends State<AjouterFive> {
   List<Produit> _produitsOrdC = [];
   List<Produit> _produitsOrdCs = [];
   List<Produit> _prodCroisement = [];
+  List<Produit> _crC = [];
+  List<Produit> _crS = [];
   List<int> cumule = [];
   List<int> cumuleC = [];
   int coutTotal = 0;
@@ -64,25 +66,34 @@ class _AjouterFiveState extends State<AjouterFive> {
   _getCroisement() {
     for (var i = 0; i < cumule.length; i++) {
       if (cumule[i] <= widget.a) {
-        _prodCroisement.add(_produitsOrdC[i]);
+        _crC.add(_produitsOrdC[i]);
+      }
+    }
+  }
+
+  _getCroisementC() {
+    for (var i = 0; i < cumuleC.length; i++) {
+      if (cumuleC[i] <= widget.a) {
+        _crS.add(_produitsOrdCs[i]);
       }
     }
   }
 
   _getCroisementCs() {
-    bool b = true;
-    for (var j = 0; j < _produitsOrdCs.length; j++) {
-      if (cumuleC[j] <= widget.a) {
-        for (var k = 0; k < _prodCroisement.length; k++) {
-          if (_prodCroisement[k].ref == _produitsOrdCs[j].ref) {
-            b = false;
-          }
+    _getCroisement();
+    _getCroisementC();
+
+    bool b = false;
+    for (var i = 0; i < _crC.length; i++) {
+      for (var j = 0; j < _crS.length; j++) {
+        if (_crC[i].ref == _crS[j].ref) {
+          b = true;
         }
-        if (b == true) {
-          _prodCroisement.add(_produitsOrdCs[j]);
-        }
-        b = true;
       }
+      if (b == true) {
+        _prodCroisement.add(_crC[i]);
+      }
+      b = false;
     }
   }
 
@@ -106,7 +117,6 @@ class _AjouterFiveState extends State<AjouterFive> {
 
     _getTotalC();
     _getCumules();
-    _getCroisement();
   }
 
   @override
