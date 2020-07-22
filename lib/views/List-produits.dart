@@ -30,9 +30,11 @@ class _ALLState extends State<ALL> {
     });
   }
 
+/*
   _all(double allSize, int qte, int seuil) {
     return (((qte * 100) / seuil) * allSize) / 100;
   }
+  
 
   _cal(int qte, int seuil) {
     double res = (qte * 100) / seuil;
@@ -52,7 +54,7 @@ class _ALLState extends State<ALL> {
       }
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -19,6 +19,7 @@ class AjouterFive extends StatefulWidget {
 class _AjouterFiveState extends State<AjouterFive> {
   List<Produit> _produitsOrdC = [];
   List<Produit> _produitsOrdCs = [];
+  List<Produit> _prodCroisement = [];
   List<int> cumule = [];
   List<int> cumuleC = [];
   int coutTotal = 0;
@@ -60,6 +61,31 @@ class _AjouterFiveState extends State<AjouterFive> {
     }
   }
 
+  _getCroisement() {
+    for (var i = 0; i < cumule.length; i++) {
+      if (cumule[i] <= widget.a) {
+        _prodCroisement.add(_produitsOrdC[i]);
+      }
+    }
+  }
+
+  _getCroisementCs() {
+    bool b = true;
+    for (var j = 0; j < _produitsOrdCs.length; j++) {
+      if (cumuleC[j] <= widget.a) {
+        for (var k = 0; k < _prodCroisement.length; k++) {
+          if (_prodCroisement[k].ref == _produitsOrdCs[j].ref) {
+            b = false;
+          }
+        }
+        if (b == true) {
+          _prodCroisement.add(_produitsOrdCs[j]);
+        }
+        b = true;
+      }
+    }
+  }
+
   _fetchConso() async {
     List<Produit> productListC =
         await DatabaseProvider.db.getProduitsOrdreCons();
@@ -68,6 +94,7 @@ class _AjouterFiveState extends State<AjouterFive> {
     });
     _getTotalCons();
     _getCumulesC();
+    _getCroisementCs();
   }
 
   _fetchProducts() async {
@@ -79,6 +106,7 @@ class _AjouterFiveState extends State<AjouterFive> {
 
     _getTotalC();
     _getCumules();
+    _getCroisement();
   }
 
   @override
@@ -153,6 +181,58 @@ class _AjouterFiveState extends State<AjouterFive> {
                     ]),
               ),
             ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 35,
+              padding: EdgeInsets.only(left: 25, right: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.red[200],
+                        ),
+                      ),
+                      Text(
+                        " : Classe A",
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.green[200],
+                        ),
+                      ),
+                      Text(
+                        " : Classe B",
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.blue[200],
+                        ),
+                      ),
+                      Text(
+                        " : Classe C",
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
             ////////
             ///
             ///
@@ -163,7 +243,8 @@ class _AjouterFiveState extends State<AjouterFive> {
                     ),
                     alignment: Alignment.center,
                     child: _produitsOrdC.length == 0 ||
-                            _produitsOrdCs.length == 0
+                            _produitsOrdCs.length == 0 ||
+                            _prodCroisement.length == 0
                         ? Center(
                             child: CircularProgressIndicator(
                               backgroundColor: Colors.grey[300],
@@ -248,7 +329,6 @@ class _AjouterFiveState extends State<AjouterFive> {
                               ),
                             ),
                             Container(
-                              //color: Colors.grey[100],
                               height: MediaQuery.of(context).size.height * .25,
                               child: ListView.builder(
                                 padding: EdgeInsets.only(bottom: 20, top: 10),
@@ -498,6 +578,143 @@ class _AjouterFiveState extends State<AjouterFive> {
                                   );
                                 },
                               ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(left: 20, right: 20),
+                              width: MediaQuery.of(context).size.width,
+                              height: 100,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text(
+                                    "Croisement: ",
+                                    style: GoogleFonts.lato(
+                                      color: Color(0XFF2163CB),
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 25,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Container(
+                                        width:
+                                            (MediaQuery.of(context).size.width -
+                                                    40) /
+                                                4,
+                                        child: Text(
+                                          "Référence",
+                                          style: GoogleFonts.lato(
+                                              fontWeight: FontWeight.w700,
+                                              color: Color(0XFF2163CB)),
+                                        ),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            (MediaQuery.of(context).size.width -
+                                                    40) /
+                                                4,
+                                        child: Text(
+                                          "???",
+                                          style: GoogleFonts.lato(
+                                              fontWeight: FontWeight.w700,
+                                              color: Color(0XFF2163CB)),
+                                        ),
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        width:
+                                            (MediaQuery.of(context).size.width -
+                                                    40) /
+                                                4,
+                                        child: Text(
+                                          "???",
+                                          style: GoogleFonts.lato(
+                                              fontWeight: FontWeight.w700,
+                                              color: Color(0XFF2163CB)),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Container(
+                                          child: Text(
+                                            "Classe",
+                                            style: GoogleFonts.lato(
+                                                fontWeight: FontWeight.w700,
+                                                color: Color(0XFF2163CB)),
+                                          ),
+                                          alignment: Alignment.centerRight,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * .25,
+                              child: ListView.builder(
+                                padding: EdgeInsets.only(bottom: 20, top: 10),
+                                physics: BouncingScrollPhysics(),
+                                itemCount: _prodCroisement.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    padding:
+                                        EdgeInsets.only(right: 20, left: 20),
+                                    color: Colors.red[100],
+                                    height: 30,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        Container(
+                                          width: (MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  40) /
+                                              4,
+                                          child: Text(
+                                            _prodCroisement[index].ref,
+                                          ),
+                                        ),
+                                        Container(
+                                          alignment: Alignment.center,
+                                          width: (MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  40) /
+                                              4,
+                                          child: Text("???"),
+                                        ),
+                                        Container(
+                                          width: (MediaQuery.of(context)
+                                                      .size
+                                                      .width -
+                                                  40) /
+                                              4,
+                                          child: Text("???"),
+                                          alignment: Alignment.center,
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            child: Text("A"),
+                                            alignment: Alignment.centerRight,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                           ])))
           ],

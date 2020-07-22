@@ -160,7 +160,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                           ),
                         ),
                         Text(
-                          "Visualisation du magasin",
+                          "Visualisation des entrés",
                           style: GoogleFonts.lato(
                             color: Color(0XFF2163CB),
                             fontWeight: FontWeight.w600,
