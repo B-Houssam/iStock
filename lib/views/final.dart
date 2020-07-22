@@ -622,7 +622,7 @@ class _AjouterFiveState extends State<AjouterFive> {
                                                     40) /
                                                 4,
                                         child: Text(
-                                          "???",
+                                          "Cout",
                                           style: GoogleFonts.lato(
                                               fontWeight: FontWeight.w700,
                                               color: Color(0XFF2163CB)),
@@ -635,7 +635,7 @@ class _AjouterFiveState extends State<AjouterFive> {
                                                     40) /
                                                 4,
                                         child: Text(
-                                          "???",
+                                          "Consomation",
                                           style: GoogleFonts.lato(
                                               fontWeight: FontWeight.w700,
                                               color: Color(0XFF2163CB)),
@@ -679,9 +679,8 @@ class _AjouterFiveState extends State<AjouterFive> {
                                                       .width -
                                                   40) /
                                               4,
-                                          child: Text(
-                                            _prodCroisement[index].ref,
-                                          ),
+                                          child:
+                                              Text(_prodCroisement[index].ref),
                                         ),
                                         Container(
                                           alignment: Alignment.center,
@@ -690,7 +689,9 @@ class _AjouterFiveState extends State<AjouterFive> {
                                                       .width -
                                                   40) /
                                               4,
-                                          child: Text("???"),
+                                          child: Text(_prodCroisement[index]
+                                              .cout
+                                              .toString()),
                                         ),
                                         Container(
                                           width: (MediaQuery.of(context)
@@ -698,7 +699,9 @@ class _AjouterFiveState extends State<AjouterFive> {
                                                       .width -
                                                   40) /
                                               4,
-                                          child: Text("???"),
+                                          child: Text(_prodCroisement[index]
+                                              .consomation
+                                              .toString()),
                                           alignment: Alignment.center,
                                         ),
                                         Expanded(
