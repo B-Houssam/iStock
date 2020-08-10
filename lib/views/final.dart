@@ -63,40 +63,6 @@ class _AjouterFiveState extends State<AjouterFive> {
     }
   }
 
-  _getCroisement() {
-    for (var i = 0; i < cumule.length; i++) {
-      if (cumule[i] <= widget.a) {
-        _crC.add(_produitsOrdC[i]);
-      }
-    }
-  }
-
-  _getCroisementC() {
-    for (var i = 0; i < cumuleC.length; i++) {
-      if (cumuleC[i] <= widget.a) {
-        _crS.add(_produitsOrdCs[i]);
-      }
-    }
-  }
-
-  _getCroisementCs() {
-    _getCroisement();
-    _getCroisementC();
-
-    bool b = false;
-    for (var i = 0; i < _crC.length; i++) {
-      for (var j = 0; j < _crS.length; j++) {
-        if (_crC[i].ref == _crS[j].ref) {
-          b = true;
-        }
-      }
-      if (b == true) {
-        _prodCroisement.add(_crC[i]);
-      }
-      b = false;
-    }
-  }
-
   _fetchConso() async {
     List<Produit> productListC =
         await DatabaseProvider.db.getProduitsOrdreCons();
@@ -117,6 +83,40 @@ class _AjouterFiveState extends State<AjouterFive> {
 
     _getTotalC();
     _getCumules();
+  }
+
+  _getCroisementCs() {
+    _getCroisement();
+    _getCroisementC();
+
+    bool b = false;
+    for (var i = 0; i < _crC.length; i++) {
+      for (var j = 0; j < _crS.length; j++) {
+        if (_crC[i].ref == _crS[j].ref) {
+          b = true;
+        }
+      }
+      if (b == true) {
+        _prodCroisement.add(_crC[i]);
+      }
+      b = false;
+    }
+  }
+
+  _getCroisement() {
+    for (var i = 0; i < cumule.length; i++) {
+      if (cumule[i] < widget.a) {
+        _crC.add(_produitsOrdC[i]);
+      }
+    }
+  }
+
+  _getCroisementC() {
+    for (var i = 0; i < cumuleC.length; i++) {
+      if (cumuleC[i] < widget.a) {
+        _crS.add(_produitsOrdCs[i]);
+      }
+    }
   }
 
   @override
@@ -253,8 +253,7 @@ class _AjouterFiveState extends State<AjouterFive> {
                     ),
                     alignment: Alignment.center,
                     child: _produitsOrdC.length == 0 ||
-                            _produitsOrdCs.length == 0 ||
-                            _prodCroisement.length == 0
+                            _produitsOrdCs.length == 0
                         ? Center(
                             child: CircularProgressIndicator(
                               backgroundColor: Colors.grey[300],
@@ -467,7 +466,7 @@ class _AjouterFiveState extends State<AjouterFive> {
                                                     40) /
                                                 4,
                                         child: Text(
-                                          "Cons",
+                                          "Consomation",
                                           style: GoogleFonts.lato(
                                               fontWeight: FontWeight.w700,
                                               color: Color(0XFF2163CB)),
@@ -667,65 +666,82 @@ class _AjouterFiveState extends State<AjouterFive> {
                                 ],
                               ),
                             ),
-                            Container(
-                              height: MediaQuery.of(context).size.height * .25,
-                              child: ListView.builder(
-                                padding: EdgeInsets.only(bottom: 20, top: 10),
-                                physics: BouncingScrollPhysics(),
-                                itemCount: _prodCroisement.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    padding:
-                                        EdgeInsets.only(right: 20, left: 20),
-                                    color: Colors.red[100],
-                                    height: 30,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Container(
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child:
-                                              Text(_prodCroisement[index].ref),
-                                        ),
-                                        Container(
-                                          alignment: Alignment.center,
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(_prodCroisement[index]
-                                              .cout
-                                              .toString()),
-                                        ),
-                                        Container(
-                                          width: (MediaQuery.of(context)
-                                                      .size
-                                                      .width -
-                                                  40) /
-                                              4,
-                                          child: Text(_prodCroisement[index]
-                                              .consomation
-                                              .toString()),
-                                          alignment: Alignment.center,
-                                        ),
-                                        Expanded(
-                                          child: Container(
-                                            child: Text("A"),
-                                            alignment: Alignment.centerRight,
-                                          ),
-                                        ),
-                                      ],
+                            _prodCroisement.length == 0
+                                ? Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        .25,
+                                    child: Center(
+                                      child: Text(
+                                        "Pas de croisement détecter dans la classe A !",
+                                        style: GoogleFonts.lato(
+                                            color: Colors.red[400]),
+                                      ),
                                     ),
-                                  );
-                                },
-                              ),
-                            ),
+                                  )
+                                : Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        .25,
+                                    child: ListView.builder(
+                                      padding:
+                                          EdgeInsets.only(bottom: 20, top: 10),
+                                      physics: BouncingScrollPhysics(),
+                                      itemCount: _prodCroisement.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          padding: EdgeInsets.only(
+                                              right: 20, left: 20),
+                                          color: Colors.red[100],
+                                          height: 30,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              Container(
+                                                width: (MediaQuery.of(context)
+                                                            .size
+                                                            .width -
+                                                        40) /
+                                                    4,
+                                                child: Text(
+                                                    _prodCroisement[index].ref),
+                                              ),
+                                              Container(
+                                                alignment: Alignment.center,
+                                                width: (MediaQuery.of(context)
+                                                            .size
+                                                            .width -
+                                                        40) /
+                                                    4,
+                                                child: Text(
+                                                    _prodCroisement[index]
+                                                        .cout
+                                                        .toString()),
+                                              ),
+                                              Container(
+                                                width: (MediaQuery.of(context)
+                                                            .size
+                                                            .width -
+                                                        40) /
+                                                    4,
+                                                child: Text(
+                                                    _prodCroisement[index]
+                                                        .consomation
+                                                        .toString()),
+                                                alignment: Alignment.center,
+                                              ),
+                                              Expanded(
+                                                child: Container(
+                                                  child: Text("A"),
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
                             SizedBox(
                               height: 10,
                             ),

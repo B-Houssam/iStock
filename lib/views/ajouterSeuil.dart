@@ -13,8 +13,18 @@ class AjouterFour extends StatefulWidget {
 
 class _AjouterFourState extends State<AjouterFour> {
   final _formKey = GlobalKey<FormState>();
-  int a = 0;
-  int b = 0;
+  int a = 75;
+  int b = 90;
+
+  var txt = TextEditingController();
+  var txt1 = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    txt.text = "75";
+    txt1.text = "90";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +142,7 @@ class _AjouterFourState extends State<AjouterFour> {
                                       child: Column(
                                         children: <Widget>[
                                           TextFormField(
-                                            //controller: txt,
+                                            controller: txt,
                                             validator: (val) {
                                               if (val.isEmpty) {
                                                 return 'Obligatoir';
@@ -176,8 +186,11 @@ class _AjouterFourState extends State<AjouterFour> {
                                             textCapitalization:
                                                 TextCapitalization.sentences,
                                           ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
                                           TextFormField(
-                                            //controller: txt,
+                                            controller: txt1,
                                             validator: (val) {
                                               if (val.isEmpty) {
                                                 return 'Obligatoir';
