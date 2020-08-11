@@ -2,7 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:iStock/views/HomePage.dart';
-import 'package:iStock/views/detalisAvant.dart';
+//import 'package:iStock/views/detalisAvant.dart';
+
+import 'package:iStock/views/ajouterSeuil.dart';
 
 class Splash extends StatefulWidget {
   Splash({Key key}) : super(key: key);
@@ -30,7 +32,7 @@ class _SplashState extends State<Splash> {
 
   _go() async {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => AjouterTree()));
+        context, MaterialPageRoute(builder: (context) => AjouterFour()));
   }
 
   @override

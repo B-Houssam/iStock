@@ -72,10 +72,10 @@ class _ActionState extends State<ActionB> {
                               builder: (context) => AjouterTwo()));
                     },
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Text(
-                          "Ajouter transaction",
+                          "Nouveau produit",
                           style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 15,
@@ -99,11 +99,14 @@ class _ActionState extends State<ActionB> {
                     ),
                     color: Color(0XFFF0A12F),
                     onPressed: () {
+                      /*
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ALL()));
+                          */
+                      //ajouter au stco ou enlever du stock
                     },
                     child: Icon(
-                      FontAwesomeIcons.list,
+                      FontAwesomeIcons.exchangeAlt,
                       color: Colors.white,
                     ),
                   ),

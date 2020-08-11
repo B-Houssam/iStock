@@ -4,7 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 import 'package:iStock/views/HomePage.dart';
-import 'package:iStock/views/detalisAvant.dart';
+import 'package:iStock/views/ajouterSeuil.dart';
+//import 'package:iStock/views/detalisAvant.dart';
 
 class AjouterOne extends StatefulWidget {
   final int nb;
@@ -99,7 +100,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              new AjouterTree()));
+                                              new AjouterFour()));
                                 }
                               }
                             },

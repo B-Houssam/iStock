@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/models/produit.dart';
-import 'package:iStock/views/alerts-notif.dart';
 import 'package:iStock/widgets/mainView/custom-drawer.dart';
 import 'package:iStock/widgets/mainView/action-bar.dart';
 import 'package:iStock/widgets/mainView/get-username.dart';
@@ -106,54 +105,28 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Container(
-                        width: MediaQuery.of(context).size.width * .16,
-                        height: MediaQuery.of(context).size.width * .16,
-                        child: Stack(
-                          children: <Widget>[
-                            Center(
-                              child: MaterialButton(
-                                minWidth:
-                                    MediaQuery.of(context).size.width * .13,
-                                height: MediaQuery.of(context).size.width * .13,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(11),
-                                ),
-                                color: Colors.white,
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Alerts()));
-                                },
-                                child: Icon(
-                                  FontAwesomeIcons.bell,
-                                  color: Color(0XFF2163CB),
-                                  size: 25,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: MediaQuery.of(context).size.width * .05,
-                                height: MediaQuery.of(context).size.width * .05,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color(0XFFED213A),
-                                ),
-                                child: Text(
-                                  count.toString(),
-                                  style: GoogleFonts.lato(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
+                      width: MediaQuery.of(context).size.width * .16,
+                      height: MediaQuery.of(context).size.width * .16,
+                      child: Center(
+                        child: MaterialButton(
+                          minWidth: MediaQuery.of(context).size.width * .13,
+                          height: MediaQuery.of(context).size.width * .13,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(11),
+                          ),
+                          color: Color(0XFFF0A12F),
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => ALL()));
+                          },
+                          child: Icon(
+                            FontAwesomeIcons.list,
+                            color: Colors.white,
+                            size: 25,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
