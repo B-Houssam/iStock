@@ -5,7 +5,6 @@ import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 import 'package:iStock/views/HomePage.dart';
 import 'package:iStock/views/ajouterSeuil.dart';
-//import 'package:iStock/views/detalisAvant.dart';
 
 class AjouterOne extends StatefulWidget {
   final int nb;
@@ -94,14 +93,15 @@ class _AjouterOneState extends State<AjouterOne> {
                             color: Colors.white,
                             onPressed: () {
                               for (var i = 0; i < widget.nb; i++) {
-                                if (keys[i].currentState.validate()) {
-                                  save(items[i]);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              new AjouterFour()));
-                                }
+                                print(items[i].ref);
+//here was validator condition
+                                save(items[i]);
+                                print(items[i]);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            new AjouterFour()));
                               }
                             },
                             child: Text(
@@ -126,6 +126,7 @@ class _AjouterOneState extends State<AjouterOne> {
                   ),
                   alignment: Alignment.center,
                   child: ListView.separated(
+                    addAutomaticKeepAlives: false,
                     separatorBuilder: (context, index) {
                       return Divider(
                         color: Colors.grey[400],
