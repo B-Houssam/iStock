@@ -672,7 +672,7 @@ class _AjouterFiveState extends State<AjouterFive> {
                                         .25,
                                     child: Center(
                                       child: Text(
-                                        "Pas de croisement détecter dans la classe A !",
+                                        "Pas de croisement détecter dans la classe A !\nVérifier les entrées",
                                         style: GoogleFonts.lato(
                                             color: Colors.red[400]),
                                       ),
