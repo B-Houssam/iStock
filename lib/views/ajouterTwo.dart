@@ -3,37 +3,66 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
+import 'package:iStock/models/produitf.dart';
+import 'package:iStock/models/produitv.dart';
 import 'package:iStock/views/HomePage.dart';
-import 'package:iStock/views/ajouterSeuil.dart';
 
-class AjouterOne extends StatefulWidget {
-  final int nb;
-  AjouterOne({Key key, this.nb}) : super(key: key);
+import 'dart:math';
+
+import 'package:iStock/views/List-produits.dart';
+
+class Entrees extends StatefulWidget {
+  final List<Produit> nb;
+  Entrees({Key key, @required this.nb}) : super(key: key);
 
   @override
-  _AjouterOneState createState() => _AjouterOneState();
+  _EntreesState createState() => _EntreesState();
 }
 
-class _AjouterOneState extends State<AjouterOne> {
+class _EntreesState extends State<Entrees> {
   final keys = List<GlobalKey<FormState>>();
-  final items = List<Produit>();
+  final items = List<Produitv>();
+  final itemsf = List<Produitf>();
+  //var rng = new Random();
 
   @override
   void initState() {
-    for (var i = 0; i < widget.nb; i++) {
+    for (var i = 0; i < widget.nb.length; i++) {
       final key = new GlobalKey<FormState>();
       keys.add(key);
-      var art = Produit();
-      items.add(art);
+      var att = new Produitv(
+        ref: widget.nb[i].ref,
+      );
+      items.add(att);
+      var atr = new Produitf(
+        ref: widget.nb[i].ref,
+        d: widget.nb[i].consomation,
+        qq: widget.nb[i].qte,
+      );
+      itemsf.add(atr);
     }
     super.initState();
   }
 
-  save(Produit p) async {
-    Produit test;
-    test = await DatabaseProvider.db.insert(p);
+  save(Produitf p) async {
+    Produitf test;
+    test = await DatabaseProvider.db.insertf(p);
     if (test != null) {
-      print("inserted !");
+      print("f -- inserted ! : " + test.ref);
+    }
+  }
+
+  calcule() {
+    for (var i = 0; i < itemsf.length; i++) {
+      double x = (2 * itemsf[i].d * items[i].coutPas) /
+          (items[i].coutPos * items[i].nbut);
+      itemsf[i].qe = sqrt(x);
+      itemsf[i].cadence = itemsf[i].d / itemsf[i].qe;
+      itemsf[i].stockSec = items[i].consoMoy * items[i].nbjSecu;
+      itemsf[i].ptc =
+          itemsf[i].stockSec + (items[i].consoMoy * items[i].delais);
+      itemsf[i].stockmin = items[i].consoMoy * items[i].delais;
+      itemsf[i].stockAl = itemsf[i].stockSec + itemsf[i].stockmin;
     }
   }
 
@@ -78,10 +107,11 @@ class _AjouterOneState extends State<AjouterOne> {
                         ),
                       ),
                       Text(
-                        "Insertion des produits",
+                        "Spécification",
                         style: GoogleFonts.lato(
                           color: Color(0XFF2163CB),
                           fontWeight: FontWeight.w600,
+                          fontSize: 17,
                         ),
                       ),
                       Container(
@@ -92,20 +122,17 @@ class _AjouterOneState extends State<AjouterOne> {
                             ),
                             color: Colors.white,
                             onPressed: () {
-                              for (var i = 0; i < widget.nb; i++) {
-                                print(items[i].ref);
-//here was validator condition
-                                save(items[i]);
-                                //print(items[i]);
+                              calcule();
+                              for (var i = 0; i < itemsf.length; i++) {
+                                save(itemsf[i]);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            new AjouterFour()));
+                                        builder: (context) => new ALL()));
                               }
                             },
                             child: Text(
-                              "Suivant",
+                              "Terminer",
                               style: GoogleFonts.lato(
                                 color: Color(0XFF2163CB),
                                 fontWeight: FontWeight.w600,
@@ -118,26 +145,23 @@ class _AjouterOneState extends State<AjouterOne> {
             //---------//
             Expanded(
               child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        //topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30)),
-                    color: Colors.white,
-                  ),
-                  alignment: Alignment.center,
-                  child: ListView.separated(
-                    addAutomaticKeepAlives: false,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
+                  color: Colors.white,
+                ),
+                alignment: Alignment.center,
+                child: ListView.separated(
                     separatorBuilder: (context, index) {
                       return Divider(
                         color: Colors.grey[400],
                       );
                     },
-                    itemCount: widget.nb,
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.only(top: 5, bottom: 20),
+                    itemCount: widget.nb.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        height: 220,
+                        height: 330,
                         padding: EdgeInsets.all(20),
                         child: Form(
                           key: keys[index],
@@ -146,10 +170,11 @@ class _AjouterOneState extends State<AjouterOne> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                "PRODUIT: " + (index + 1).toString(),
+                                itemsf[index].ref + " :",
                                 style: GoogleFonts.lato(
                                   color: Color(0XFF2163CB),
-                                  fontSize: 15,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               Row(
@@ -170,7 +195,7 @@ class _AjouterOneState extends State<AjouterOne> {
 
                                       onChanged: (val) {
                                         setState(() {
-                                          items[index].ref = val;
+                                          items[index].coutPas = int.parse(val);
                                         });
                                       },
 
@@ -191,11 +216,14 @@ class _AjouterOneState extends State<AjouterOne> {
                                           borderSide: BorderSide(
                                               color: Colors.red, width: 1.0),
                                         ),
-                                        labelText: 'Référence',
+                                        labelText: 'Cout d’acquisition',
+                                        labelStyle: TextStyle(
+                                          fontSize: 12,
+                                        ),
                                         border: InputBorder.none,
                                         counter: const SizedBox(),
                                       ),
-                                      keyboardType: TextInputType.text,
+                                      keyboardType: TextInputType.number,
                                       maxLines: 1,
                                       maxLength: 1024,
                                       textCapitalization:
@@ -218,7 +246,7 @@ class _AjouterOneState extends State<AjouterOne> {
 
                                       onChanged: (val) {
                                         setState(() {
-                                          items[index].qte = int.parse(val);
+                                          items[index].coutPos = int.parse(val);
                                         });
                                       },
 
@@ -239,7 +267,10 @@ class _AjouterOneState extends State<AjouterOne> {
                                           borderSide: BorderSide(
                                               color: Colors.red, width: 1.0),
                                         ),
-                                        labelText: 'Nombre de pièces',
+                                        labelText: 'Cout possession',
+                                        labelStyle: TextStyle(
+                                          fontSize: 12,
+                                        ),
                                         border: InputBorder.none,
                                         counter: const SizedBox(),
                                       ),
@@ -271,7 +302,7 @@ class _AjouterOneState extends State<AjouterOne> {
 
                                       onChanged: (val) {
                                         setState(() {
-                                          items[index].cout = int.parse(val);
+                                          items[index].nbut = int.parse(val);
                                         });
                                       },
 
@@ -292,7 +323,10 @@ class _AjouterOneState extends State<AjouterOne> {
                                           borderSide: BorderSide(
                                               color: Colors.red, width: 1.0),
                                         ),
-                                        labelText: 'Cout',
+                                        labelText: 'Nb° unité de temps',
+                                        labelStyle: TextStyle(
+                                          fontSize: 12,
+                                        ),
                                         border: InputBorder.none,
                                         counter: const SizedBox(),
                                       ),
@@ -316,9 +350,10 @@ class _AjouterOneState extends State<AjouterOne> {
                                           return null;
                                         }
                                       },
+
                                       onChanged: (val) {
                                         setState(() {
-                                          items[index].consomation =
+                                          items[index].consoMoy =
                                               int.parse(val);
                                         });
                                       },
@@ -340,7 +375,116 @@ class _AjouterOneState extends State<AjouterOne> {
                                           borderSide: BorderSide(
                                               color: Colors.red, width: 1.0),
                                         ),
-                                        labelText: 'Consomation',
+                                        labelText: 'Conso. Moyenne / jour',
+                                        labelStyle: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                        border: InputBorder.none,
+                                        counter: const SizedBox(),
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                      maxLines: 1,
+                                      maxLength: 1024,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                      //readOnly: !_note.state.canEdit,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * .45,
+                                    child: TextFormField(
+                                      validator: (val) {
+                                        if (val.isEmpty) {
+                                          return 'Obligatoire';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+
+                                      onChanged: (val) {
+                                        setState(() {
+                                          items[index].nbjSecu = int.parse(val);
+                                        });
+                                      },
+
+                                      decoration: const InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.red, width: 1.0),
+                                        ),
+                                        labelText: 'Nb° jours sécurité',
+                                        labelStyle: TextStyle(
+                                          fontSize: 12,
+                                        ),
+                                        border: InputBorder.none,
+                                        counter: const SizedBox(),
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                      maxLines: 1,
+                                      maxLength: 1024,
+                                      textCapitalization:
+                                          TextCapitalization.sentences,
+                                      //readOnly: !_note.state.canEdit,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: TextFormField(
+                                      validator: (val) {
+                                        if (val.isEmpty) {
+                                          return 'Obligatoire';
+                                        } else {
+                                          return null;
+                                        }
+                                      },
+                                      onChanged: (val) {
+                                        setState(() {
+                                          items[index].delais = int.parse(val);
+                                        });
+                                      },
+
+                                      decoration: const InputDecoration(
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.grey, width: 1.0),
+                                        ),
+                                        errorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.red, width: 1.0),
+                                        ),
+                                        labelText: 'Délai réaprovisionement',
+                                        labelStyle: TextStyle(
+                                          fontSize: 12,
+                                        ),
                                         border: InputBorder.none,
                                         counter: const SizedBox(),
                                       ),
@@ -358,8 +502,8 @@ class _AjouterOneState extends State<AjouterOne> {
                           ),
                         ),
                       );
-                    },
-                  )),
+                    }),
+              ),
             )
           ],
         ),

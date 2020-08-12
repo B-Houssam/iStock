@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
-import 'package:iStock/models/produit.dart';
+import 'package:iStock/models/produitf.dart';
 import 'package:iStock/views/modify-product.dart';
-//import 'package:iStock/widgets/allView/status-bar.dart';
 import 'package:iStock/widgets/allView/top-bar.dart';
 
 class ALL extends StatefulWidget {
@@ -15,7 +14,7 @@ class ALL extends StatefulWidget {
 }
 
 class _ALLState extends State<ALL> {
-  List<Produit> _produits = [];
+  List<Produitf> _produits = [];
 
   @override
   void initState() {
@@ -24,7 +23,7 @@ class _ALLState extends State<ALL> {
   }
 
   _fetchProducts() async {
-    List<Produit> productList = await DatabaseProvider.db.getProduits();
+    List<Produitf> productList = await DatabaseProvider.db.getProduitsF();
     setState(() {
       _produits = productList;
     });
@@ -35,7 +34,7 @@ class _ALLState extends State<ALL> {
     return (((qte * 100) / seuil) * allSize) / 100;
   }
   
-
+*/
   _cal(int qte, int seuil) {
     double res = (qte * 100) / seuil;
     if (res > 100) {
@@ -44,17 +43,17 @@ class _ALLState extends State<ALL> {
       if (res <= 100 && res >= 70) {
         return Colors.green;
       } else {
-        if (res < 70 && res >= 40) {
+        if (res < 70 && res > 20) {
           return Colors.orangeAccent;
         } else {
-          if (res < 40) {
-            return Colors.red;
+          if (res <= 20) {
+            return Colors.redAccent;
           }
         }
       }
     }
   }
-*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,25 +75,11 @@ class _ALLState extends State<ALL> {
                         width: 10,
                         height: 10,
                         decoration: BoxDecoration(
-                          color: Colors.red[200],
-                        ),
-                      ),
-                      Text(
-                        " : Classe A",
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Container(
-                        width: 10,
-                        height: 10,
-                        decoration: BoxDecoration(
                           color: Colors.green[200],
                         ),
                       ),
                       Text(
-                        " : Classe B",
+                        " : Bien",
                       )
                     ],
                   ),
@@ -104,11 +89,25 @@ class _ALLState extends State<ALL> {
                         width: 10,
                         height: 10,
                         decoration: BoxDecoration(
-                          color: Colors.blue[200],
+                          color: Colors.orange[200],
                         ),
                       ),
                       Text(
-                        " : Classe C",
+                        " : Attention",
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Container(
+                        width: 10,
+                        height: 10,
+                        decoration: BoxDecoration(
+                          color: Colors.red[200],
+                        ),
+                      ),
+                      Text(
+                        " : Danger",
                       )
                     ],
                   )
@@ -136,14 +135,19 @@ class _ALLState extends State<ALL> {
                             topRight: Radius.circular(20),
                             topLeft: Radius.circular(20)),
                       ),
-                      child: ListView.builder(
+                      child: ListView.separated(
+                        separatorBuilder: (context, index) {
+                          return Divider(
+                            color: Colors.grey[400],
+                          );
+                        },
                         itemCount: _produits.length,
                         physics: BouncingScrollPhysics(),
                         padding: EdgeInsets.only(bottom: 15),
                         itemBuilder: (context, index) {
                           return Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * .14,
+                            height: MediaQuery.of(context).size.height * .23,
                             padding:
                                 EdgeInsets.only(top: 10, left: 30, right: 30),
                             child: Row(
@@ -156,12 +160,16 @@ class _ALLState extends State<ALL> {
                                   height:
                                       MediaQuery.of(context).size.width * .15,
                                   decoration: BoxDecoration(
-                                    color: Colors.orange,
+                                    color: _cal(_produits[index].qq,
+                                        _produits[index].stockAl),
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    _produits[index].ref.substring(0, 2),
+                                    _produits[index]
+                                        .ref
+                                        .substring(0, 2)
+                                        .toString(),
                                     style: GoogleFonts.lato(
                                         color: Colors.white,
                                         fontSize: 20,
@@ -173,7 +181,7 @@ class _ALLState extends State<ALL> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Text(
-                                      _produits[index].ref,
+                                      _produits[index].ref.toString(),
                                       style: GoogleFonts.lato(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w900,
@@ -184,11 +192,13 @@ class _ALLState extends State<ALL> {
                                       height: 5,
                                     ),
                                     Text(
-                                      _produits[index].qte.toString() +
-                                          " item dans le stock",
+                                      "Qte Actuel: " +
+                                          _produits[index]
+                                              .qq
+                                              .toStringAsFixed(1),
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                         fontSize: 14,
                                       ),
                                     ),
@@ -196,10 +206,83 @@ class _ALLState extends State<ALL> {
                                       height: 5,
                                     ),
                                     Text(
-                                      "Seuil: " + "XX",
+                                      "Qte économique: " +
+                                          _produits[index]
+                                              .qe
+                                              .toStringAsFixed(3),
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Cadence: " +
+                                          _produits[index]
+                                              .cadence
+                                              .toStringAsFixed(3),
+                                      style: GoogleFonts.lato(
+                                        color: Color(0XFF2163CB),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Stock de sécurité " +
+                                          _produits[index]
+                                              .stockSec
+                                              .toStringAsFixed(1),
+                                      style: GoogleFonts.lato(
+                                        color: Color(0XFF2163CB),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Stock d'alert: " +
+                                          _produits[index]
+                                              .stockAl
+                                              .toStringAsFixed(1),
+                                      style: GoogleFonts.lato(
+                                        color: Color(0XFF2163CB),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Stock minimal: " +
+                                          _produits[index]
+                                              .stockmin
+                                              .toStringAsFixed(1),
+                                      style: GoogleFonts.lato(
+                                        color: Color(0XFF2163CB),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      "Point de commande: " +
+                                          _produits[index]
+                                              .ptc
+                                              .toStringAsFixed(3),
+                                      style: GoogleFonts.lato(
+                                        color: Color(0XFF2163CB),
+                                        fontWeight: FontWeight.w400,
                                         fontSize: 14,
                                       ),
                                     ),

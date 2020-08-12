@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
+import 'package:iStock/views/ajouterTwo.dart';
 
 import 'HomePage.dart';
 
@@ -179,7 +180,13 @@ class _AjouterFiveState extends State<AjouterFive> {
                               borderRadius: BorderRadius.circular(11),
                             ),
                             color: Colors.white,
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          new Entrees(nb: _prodCroisement)));
+                            },
                             child: Text(
                               "Suivant",
                               style: GoogleFonts.lato(

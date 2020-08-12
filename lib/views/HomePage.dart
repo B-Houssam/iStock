@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
+import 'package:iStock/models/produitf.dart';
 import 'package:iStock/widgets/mainView/custom-drawer.dart';
 import 'package:iStock/widgets/mainView/action-bar.dart';
 import 'package:iStock/widgets/mainView/get-username.dart';
@@ -16,7 +18,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  List<Produit> _produits = [];
+  List<Produitf> _produits = [];
 
   Color col1 = Color(0XFF36D459);
   Color col2 = Color(0XFF0BC53C);
@@ -31,22 +33,24 @@ class _HomePageState extends State<HomePage> {
   );
   String mssg = "Très Bien!";
 
-/*
   _fetchProducts() async {
-    List<Produit> productList = await DatabaseProvider.db.getProduits();
+    List<Produitf> productList = await DatabaseProvider.db.getProduitsF();
     setState(() {
       _produits = productList;
     });
   }
 
+/*
   _all(int qte, int seuil) {
     return (((qte * 100) / seuil));
   }
+  */
 
   _check() async {
-    List<Produit> productList = await DatabaseProvider.db.getProduits();
+    List<Produitf> productList = await DatabaseProvider.db.getProduitsF();
     productList.forEach((element) {
-      if (element.qte < element.seuil) {
+      double res = (element.qq * 100) / element.stockAl;
+      if (res < 70 && res >= 40) {
         setState(() {
           col1 = Color(0XFFED213A);
           col2 = Color(0XFF93291E);
@@ -61,7 +65,6 @@ class _HomePageState extends State<HomePage> {
       }
     });
   }
-  
 
   @override
   void initState() {
@@ -69,7 +72,7 @@ class _HomePageState extends State<HomePage> {
     _check();
     _fetchProducts();
   }
-*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -272,11 +275,11 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: <Widget>[
                   GetName(),
-                  _produits.length < 3
+                  _produits.length < 2
                       ? Expanded(
                           child: Center(
                               child: Text(
-                            "Commencer par ajouter plus de 3 produits",
+                            "Commencer par ajouter des produits",
                             style: GoogleFonts.lato(
                               color: Colors.grey[400],
                             ),
@@ -308,37 +311,28 @@ class _HomePageState extends State<HomePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: <Widget>[
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text("test"
-                                              /*
-                                            _all(
-                                                  _produits[0].qte,
-                                                  //_produits[0].seuil,
-                                                ).toString() +
-                                                "%",
-                                            style: GoogleFonts.lato(
-                                              color: Colors.white,
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                            */
-                                              ),
-                                        ),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.end,
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
                                               _produits[0].ref,
                                               style: GoogleFonts.lato(
                                                 color: Colors.white,
-                                                fontSize: 20,
+                                                fontSize: 30,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            SizedBox(
-                                              height: 10,
+                                            Text(
+                                              "Stock Alert: " +
+                                                  _produits[0]
+                                                      .stockAl
+                                                      .toString(),
+                                              style: GoogleFonts.lato(
+                                                color: Colors.white,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -364,93 +358,28 @@ class _HomePageState extends State<HomePage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: <Widget>[
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text(
-                                            /*
-                                            _all(
-                                                  _produits[1].qte,
-                                                  _produits[1].seuil,
-                                                ).toString() +
-                                                "%",
-                                            style: GoogleFonts.lato(
-                                              color: Colors.white,
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                            */
-                                            "test",
-                                          ),
-                                        ),
                                         Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.end,
+                                              CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
                                               _produits[1].ref,
                                               style: GoogleFonts.lato(
                                                 color: Colors.white,
-                                                fontSize: 20,
+                                                fontSize: 30,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 15.0),
-                                  child: Container(
-                                    padding: EdgeInsets.all(15),
-                                    width:
-                                        MediaQuery.of(context).size.width * .4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(60),
-                                          topRight: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20),
-                                          bottomRight: Radius.circular(20)),
-                                      color: Color(0XFFEE651F),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Align(
-                                          alignment: Alignment.topLeft,
-                                          child: Text("test"
-                                              /*
-                                            _all(_produits[2].qte,
-                                                        _produits[2].seuil)
-                                                    .toString() +
-                                                "%",
-                                            style: GoogleFonts.lato(
-                                              color: Colors.white,
-                                              fontSize: 30,
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                            */
-                                              ),
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: <Widget>[
                                             Text(
-                                              _produits[2].ref,
+                                              "Stock Alert: " +
+                                                  _produits[1]
+                                                      .stockAl
+                                                      .toString(),
                                               style: GoogleFonts.lato(
                                                 color: Colors.white,
-                                                fontSize: 20,
+                                                fontSize: 15,
                                                 fontWeight: FontWeight.w600,
                                               ),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
                                             ),
                                           ],
                                         ),
