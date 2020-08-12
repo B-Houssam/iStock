@@ -187,7 +187,7 @@ class _ALLState extends State<ALL> {
                                       height: 5,
                                     ),
                                     Text(
-                                      "Qte Actuel: " +
+                                      "Stock Actuel: " +
                                           _produits[index]
                                               .qq
                                               .toStringAsFixed(1),
