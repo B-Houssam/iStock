@@ -147,7 +147,7 @@ class _AjouterTwoState extends State<AjouterTwo> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                "Combien de produits voulez \nvous ajouter ?",
+                                "Combien d'article voulez \nvous ajouter ?",
                                 style: GoogleFonts.lato(
                                   color: Color(0XFF2163CB),
                                   fontWeight: FontWeight.w600,

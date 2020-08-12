@@ -72,7 +72,7 @@ class _ActionState extends State<ActionB> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Text(
-                          "Nouveau produit",
+                          "Nouveau article",
                           style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 15,

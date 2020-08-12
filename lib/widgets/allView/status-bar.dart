@@ -73,7 +73,7 @@ class _StatusBarState extends State<StatusBar> {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Text(
-                      mssg + "\n" + count.toString() + " alèrtes des produits!",
+                      mssg + "\n" + count.toString() + " alèrtes des articles!",
                       textAlign: TextAlign.end,
                       style: GoogleFonts.lato(
                         color: Colors.white,

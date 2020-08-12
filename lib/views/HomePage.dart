@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
-import 'package:iStock/models/produit.dart';
 import 'package:iStock/models/produitf.dart';
 import 'package:iStock/widgets/mainView/custom-drawer.dart';
 import 'package:iStock/widgets/mainView/action-bar.dart';
@@ -49,13 +48,12 @@ class _HomePageState extends State<HomePage> {
   _check() async {
     List<Produitf> productList = await DatabaseProvider.db.getProduitsF();
     productList.forEach((element) {
-      double res = (element.qq * 100) / element.stockAl;
-      if (res < 70 && res >= 40) {
+      if (element.qq <= element.stockAl) {
         setState(() {
           col1 = Color(0XFFED213A);
           col2 = Color(0XFF93291E);
           count++;
-          mssg = "Attenntion!";
+          mssg = "Attention!";
           _icon = Icon(
             FontAwesomeIcons.exclamation,
             color: Colors.white,
@@ -197,7 +195,7 @@ class _HomePageState extends State<HomePage> {
                                         width: 10,
                                       ),
                                       Text(
-                                        "Alertes des\nproduits",
+                                        "Alertes des\narticles",
                                         textAlign: TextAlign.left,
                                         style: GoogleFonts.lato(
                                           color: Colors.white,
@@ -210,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                                   Row(
                                     children: <Widget>[
                                       Text(
-                                        "Vérifier list produits",
+                                        "Vérifier list articles",
                                         style: GoogleFonts.lato(
                                           color: Colors.white,
                                         ),
@@ -279,7 +277,7 @@ class _HomePageState extends State<HomePage> {
                       ? Expanded(
                           child: Center(
                               child: Text(
-                            "Commencer par ajouter des produits",
+                            "Commencer par ajouter des articles",
                             style: GoogleFonts.lato(
                               color: Colors.grey[400],
                             ),
@@ -419,7 +417,7 @@ class _HomePageState extends State<HomePage> {
                                         },
                                         child: Center(
                                           child: Text(
-                                            "Voir tout les produits",
+                                            "Voir tout les articles",
                                             textAlign: TextAlign.end,
                                             style: GoogleFonts.lato(
                                               color: Colors.white,

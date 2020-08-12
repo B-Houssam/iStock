@@ -30,7 +30,7 @@ class _GetNameState extends State<GetName> {
             Padding(
               padding: const EdgeInsets.only(top: 5.0),
               child: Text(
-                "Voici la disponibilité des produits a suivre",
+                "Voici la disponibilité des articles a suivre",
                 style: GoogleFonts.lato(
                   color: Colors.grey[500],
                   fontWeight: FontWeight.w400,

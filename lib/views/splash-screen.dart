@@ -1,10 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:iStock/views/HomePage.dart';
-//import 'package:iStock/views/detalisAvant.dart';
-
-import 'package:iStock/views/ajouterSeuil.dart';
+import 'package:iStock/views/HomePage.dart';
 
 class Splash extends StatefulWidget {
   Splash({Key key}) : super(key: key);
@@ -22,18 +19,18 @@ class _SplashState extends State<Splash> {
     );
     new Timer(fSec, () => _go());
   }
-  /*
 
   _go() async {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
-*/
 
+/*
   _go() async {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => AjouterFour()));
   }
+*/
 
   @override
   Widget build(BuildContext context) {

@@ -146,7 +146,7 @@ class _AjouterOneState extends State<AjouterOne> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Text(
-                                "PRODUIT: " + (index + 1).toString(),
+                                "ARTICLE: " + (index + 1).toString(),
                                 style: GoogleFonts.lato(
                                   color: Color(0XFF2163CB),
                                   fontSize: 15,

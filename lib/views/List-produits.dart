@@ -36,19 +36,14 @@ class _ALLState extends State<ALL> {
   
 */
   _cal(int qte, int seuil) {
-    double res = (qte * 100) / seuil;
-    if (res > 100) {
+    if (qte > seuil) {
       return Colors.green;
     } else {
-      if (res <= 100 && res >= 70) {
-        return Colors.green;
+      if (qte == seuil) {
+        return Colors.orangeAccent;
       } else {
-        if (res < 70 && res > 20) {
-          return Colors.orangeAccent;
-        } else {
-          if (res <= 20) {
-            return Colors.redAccent;
-          }
+        if (qte < seuil) {
+          return Colors.redAccent;
         }
       }
     }
@@ -93,7 +88,7 @@ class _ALLState extends State<ALL> {
                         ),
                       ),
                       Text(
-                        " : Attention",
+                        " : Passez commande",
                       )
                     ],
                   ),
@@ -119,7 +114,7 @@ class _ALLState extends State<ALL> {
                 ? Expanded(
                     child: Center(
                       child: Text(
-                        "Pas de produits !\nEssayer d'ajouter.",
+                        "Pas d'articles !\nEssayer d'ajouter.",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.lato(
                           color: Colors.grey[400],
