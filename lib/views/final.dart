@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 import 'package:iStock/views/ajouterTwo.dart';
 
-import 'HomePage.dart';
+//import 'HomePage.dart';
 
 class AjouterFive extends StatefulWidget {
   final int a;
@@ -143,10 +143,12 @@ class _AjouterFiveState extends State<AjouterFive> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
+                      /*
                       Container(
                         width: MediaQuery.of(context).size.width * .13,
                         height: MediaQuery.of(context).size.width * .13,
-                        child: RaisedButton(
+                        child:
+                         RaisedButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(11),
                           ),
@@ -165,7 +167,9 @@ class _AjouterFiveState extends State<AjouterFive> {
                             size: 20,
                           ),
                         ),
+
                       ),
+                      */
                       Text(
                         "Classification",
                         style: GoogleFonts.lato(

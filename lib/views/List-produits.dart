@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produitf.dart';
-import 'package:iStock/views/modify-product.dart';
 import 'package:iStock/widgets/allView/top-bar.dart';
 
 class ALL extends StatefulWidget {
@@ -142,11 +141,10 @@ class _ALLState extends State<ALL> {
                         itemBuilder: (context, index) {
                           return Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * .23,
+                            height: MediaQuery.of(context).size.height * .24,
                             padding:
                                 EdgeInsets.only(top: 10, left: 30, right: 30),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Container(
@@ -170,6 +168,9 @@ class _ALLState extends State<ALL> {
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600),
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 35,
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -283,6 +284,7 @@ class _ALLState extends State<ALL> {
                                     ),
                                   ],
                                 ),
+                                /*
                                 Container(
                                   width:
                                       MediaQuery.of(context).size.width * .11,
@@ -294,12 +296,14 @@ class _ALLState extends State<ALL> {
                                     ),
                                     color: Colors.white,
                                     onPressed: () {
+                                      /*
                                       //go to modify
                                       Navigator.push(
                                           context,
                                           new MaterialPageRoute(
                                             builder: (context) => new Modify(),
                                           ));
+                                          */
                                     },
                                     child: Icon(
                                       FontAwesomeIcons.pen,
@@ -308,6 +312,7 @@ class _ALLState extends State<ALL> {
                                     ),
                                   ),
                                 ),
+                                */
                               ],
                             ),
                           );
