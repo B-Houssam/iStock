@@ -170,4 +170,9 @@ class DatabaseProvider {
     p.idd = await db.insert(TABLE_FINAL, p.toMap());
     return p;
   }
+
+  Future deleteAllRows() async {
+    final db = await database;
+    db.delete(TABLE_FINAL);
+  }
 }

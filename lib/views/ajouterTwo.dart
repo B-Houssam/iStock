@@ -123,6 +123,8 @@ class _EntreesState extends State<Entrees> {
                             color: Colors.white,
                             onPressed: () {
                               calcule();
+                              //pour renitialiser la table final
+                              DatabaseProvider.db.deleteAllRows();
                               for (var i = 0; i < itemsf.length; i++) {
                                 save(itemsf[i]);
                                 Navigator.push(
