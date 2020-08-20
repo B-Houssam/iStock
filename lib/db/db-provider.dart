@@ -119,7 +119,7 @@ class DatabaseProvider {
 
   Future<List<Produit>> getProduitsOrdre() async {
     final db = await database;
-    var produits = await db.query(TABLE_PRODUIT, orderBy: "$COLUMN_COUT ASC");
+    var produits = await db.query(TABLE_PRODUIT, orderBy: "$COLUMN_COUT DESC");
 
     List<Produit> productList = List<Produit>();
 
@@ -133,7 +133,7 @@ class DatabaseProvider {
 
   Future<List<Produit>> getProduitsOrdreCons() async {
     final db = await database;
-    var produits = await db.query(TABLE_PRODUIT, orderBy: "$COLUMN_CONS ASC");
+    var produits = await db.query(TABLE_PRODUIT, orderBy: "$COLUMN_CONS DESC");
 
     List<Produit> productList = List<Produit>();
 

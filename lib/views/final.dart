@@ -361,14 +361,13 @@ class _AjouterFiveState extends State<AjouterFive> {
                                     padding:
                                         EdgeInsets.only(right: 20, left: 20),
                                     color: (() {
-                                      if (_produitsOrdC[index].cout <=
-                                              widget.a &&
-                                          _produitsOrdC[index].cout > 0) {
+                                      if (_produitsOrdC[index].cout >=
+                                          widget.a) {
                                         return Colors.red[100];
                                       } else {
-                                        if (_produitsOrdC[index].cout >
+                                        if (_produitsOrdC[index].cout <
                                                 widget.a &&
-                                            _produitsOrdC[index].cout <=
+                                            _produitsOrdC[index].cout >=
                                                 widget.b) {
                                           return Colors.green[100];
                                         } else {
@@ -419,15 +418,13 @@ class _AjouterFiveState extends State<AjouterFive> {
                                           child: Container(
                                             alignment: Alignment.centerRight,
                                             child: Text(((() {
-                                              if (_produitsOrdC[index].cout <=
-                                                      widget.a &&
-                                                  _produitsOrdC[index].cout >
-                                                      0) {
+                                              if (_produitsOrdC[index].cout >=
+                                                  widget.a) {
                                                 return "A";
                                               } else {
-                                                if (_produitsOrdC[index].cout >
+                                                if (_produitsOrdC[index].cout <
                                                         widget.a &&
-                                                    _produitsOrdC[index].cout <=
+                                                    _produitsOrdC[index].cout >=
                                                         widget.b) {
                                                   return "B";
                                                 } else {
@@ -532,15 +529,13 @@ class _AjouterFiveState extends State<AjouterFive> {
                                     padding:
                                         EdgeInsets.only(right: 20, left: 20),
                                     color: (() {
-                                      if (_produitsOrdCs[index].consomation <=
-                                              widget.c &&
-                                          _produitsOrdCs[index].consomation >
-                                              0) {
+                                      if (_produitsOrdCs[index].consomation >=
+                                          widget.c) {
                                         return Colors.red[100];
                                       } else {
-                                        if (_produitsOrdCs[index].consomation >
+                                        if (_produitsOrdCs[index].consomation <
                                                 widget.c &&
-                                            _produitsOrdCs[index].consomation <=
+                                            _produitsOrdCs[index].consomation >=
                                                 widget.d) {
                                           return Colors.green[100];
                                         } else {
@@ -591,18 +586,15 @@ class _AjouterFiveState extends State<AjouterFive> {
                                           child: Container(
                                             child: Text(((() {
                                               if (_produitsOrdCs[index]
-                                                          .consomation <=
-                                                      widget.c &&
-                                                  _produitsOrdCs[index]
-                                                          .consomation >
-                                                      0) {
+                                                      .consomation >=
+                                                  widget.c) {
                                                 return "A";
                                               } else {
                                                 if (_produitsOrdCs[index]
-                                                            .consomation >
+                                                            .consomation <
                                                         widget.c &&
                                                     _produitsOrdCs[index]
-                                                            .consomation <=
+                                                            .consomation >=
                                                         widget.d) {
                                                   return "B";
                                                 } else {

@@ -14,10 +14,10 @@ class AjouterFour extends StatefulWidget {
 class _AjouterFourState extends State<AjouterFour> {
   final _formKey = GlobalKey<FormState>();
   final _formKey1 = GlobalKey<FormState>();
-  int a = 1000;
-  int b = 3000;
-  int c = 10;
-  int d = 30;
+  int a = 3500;
+  int b = 2500;
+  int c = 35;
+  int d = 25;
 
   var txt = TextEditingController();
   var txt1 = TextEditingController();
@@ -27,10 +27,10 @@ class _AjouterFourState extends State<AjouterFour> {
   @override
   void initState() {
     super.initState();
-    txt.text = "1000";
-    txt1.text = "3000";
-    txt2.text = "10";
-    txt3.text = '30';
+    txt.text = "3500";
+    txt1.text = "2500";
+    txt2.text = "35";
+    txt3.text = '25';
   }
 
   @override
@@ -187,7 +187,7 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 },
                                                 decoration:
                                                     const InputDecoration(
-                                                  labelText: "0 < A < X",
+                                                  labelText: "A > X",
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -244,7 +244,7 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 },
                                                 decoration:
                                                     const InputDecoration(
-                                                  labelText: "0 < B < Y",
+                                                  labelText: "X > B > Y",
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -329,7 +329,7 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 },
                                                 decoration:
                                                     const InputDecoration(
-                                                  labelText: "0 < A < X",
+                                                  labelText: "A > X",
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -386,7 +386,7 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 },
                                                 decoration:
                                                     const InputDecoration(
-                                                  labelText: "0 < B < Y",
+                                                  labelText: "X > B > Y",
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
