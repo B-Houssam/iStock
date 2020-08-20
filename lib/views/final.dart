@@ -10,8 +10,10 @@ import 'package:iStock/views/ajouterTwo.dart';
 class AjouterFive extends StatefulWidget {
   final int a;
   final int b;
+  final int c;
+  final int d;
 
-  AjouterFive({Key key, this.a, this.b}) : super(key: key);
+  AjouterFive({Key key, this.a, this.b, this.c, this.d}) : super(key: key);
 
   @override
   _AjouterFiveState createState() => _AjouterFiveState();
@@ -114,7 +116,7 @@ class _AjouterFiveState extends State<AjouterFive> {
 
   _getCroisementC() {
     for (var i = 0; i < cumuleC.length; i++) {
-      if (cumuleC[i] < widget.a) {
+      if (cumuleC[i] < widget.c) {
         _crS.add(_produitsOrdCs[i]);
       }
     }
@@ -524,12 +526,12 @@ class _AjouterFiveState extends State<AjouterFive> {
                                     padding:
                                         EdgeInsets.only(right: 20, left: 20),
                                     color: (() {
-                                      if (cumuleC[index] < widget.a &&
+                                      if (cumuleC[index] < widget.c &&
                                           cumuleC[index] > 0) {
                                         return Colors.red[100];
                                       } else {
-                                        if (cumuleC[index] >= widget.a &&
-                                            cumuleC[index] < widget.b) {
+                                        if (cumuleC[index] >= widget.c &&
+                                            cumuleC[index] < widget.d) {
                                           return Colors.green[100];
                                         } else {
                                           return Colors.blue[100];
@@ -578,12 +580,12 @@ class _AjouterFiveState extends State<AjouterFive> {
                                         Expanded(
                                           child: Container(
                                             child: Text(((() {
-                                              if (cumuleC[index] < widget.a &&
+                                              if (cumuleC[index] < widget.c &&
                                                   cumuleC[index] > 0) {
                                                 return "A";
                                               } else {
-                                                if (cumuleC[index] > widget.a &&
-                                                    cumuleC[index] < widget.a) {
+                                                if (cumuleC[index] > widget.c &&
+                                                    cumuleC[index] < widget.d) {
                                                   return "B";
                                                 } else {
                                                   return "C";

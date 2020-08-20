@@ -13,17 +13,24 @@ class AjouterFour extends StatefulWidget {
 
 class _AjouterFourState extends State<AjouterFour> {
   final _formKey = GlobalKey<FormState>();
+  final _formKey1 = GlobalKey<FormState>();
   int a = 75;
   int b = 90;
+  int c = 75;
+  int d = 90;
 
   var txt = TextEditingController();
   var txt1 = TextEditingController();
+  var txt2 = TextEditingController();
+  var txt3 = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     txt.text = "75";
     txt1.text = "90";
+    txt2.text = "75";
+    txt3.text = '90';
   }
 
   @override
@@ -85,6 +92,8 @@ class _AjouterFourState extends State<AjouterFour> {
                                         builder: (context) => new AjouterFive(
                                               a: a,
                                               b: b,
+                                              c: c,
+                                              d: d,
                                             )),
                                     (Route<dynamic> route) =>
                                         false).then((value) => setState(() {}));
@@ -130,113 +139,281 @@ class _AjouterFourState extends State<AjouterFour> {
                                   fontSize: 27,
                                 ),
                               ),
-                              Column(
+                              Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: <Widget>[
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    child: Form(
-                                      key: _formKey,
-                                      child: Column(
-                                        children: <Widget>[
-                                          TextFormField(
-                                            controller: txt,
-                                            validator: (val) {
-                                              if (val.isEmpty) {
-                                                return 'Obligatoir';
-                                              } else {
-                                                return null;
-                                              }
-                                            },
-                                            onChanged: (val) {
-                                              setState(() {
-                                                a = int.parse(val);
-                                              });
-                                            },
-                                            decoration: const InputDecoration(
-                                              labelText: "0 < A < X",
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.red,
-                                                    width: 1.0),
-                                              ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0),
-                                              ),
-                                              border: InputBorder.none,
-                                              counter: const SizedBox(),
-                                            ),
-                                            maxLines: 1,
-                                            keyboardType: TextInputType.number,
-                                            textCapitalization:
-                                                TextCapitalization.sentences,
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          TextFormField(
-                                            controller: txt1,
-                                            validator: (val) {
-                                              if (val.isEmpty) {
-                                                return 'Obligatoir';
-                                              } else {
-                                                return null;
-                                              }
-                                            },
-                                            onChanged: (val) {
-                                              setState(() {
-                                                b = int.parse(val);
-                                              });
-                                            },
-                                            decoration: const InputDecoration(
-                                              labelText: "0 < B < Y",
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.red,
-                                                    width: 1.0),
-                                              ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                    color: Colors.grey,
-                                                    width: 1.0),
-                                              ),
-                                              border: InputBorder.none,
-                                              counter: const SizedBox(),
-                                            ),
-                                            maxLines: 1,
-                                            keyboardType: TextInputType.number,
-                                            textCapitalization:
-                                                TextCapitalization.sentences,
-                                          ),
-                                        ],
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        "Cout",
+                                        style: GoogleFonts.lato(
+                                          color: Color(0XFF2163CB),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 17,
+                                        ),
                                       ),
-                                    ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .4,
+                                        child: Form(
+                                          key: _formKey,
+                                          child: Column(
+                                            children: <Widget>[
+                                              TextFormField(
+                                                controller: txt,
+                                                validator: (val) {
+                                                  if (val.isEmpty) {
+                                                    return 'Obligatoir';
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                                onChanged: (val) {
+                                                  setState(() {
+                                                    a = int.parse(val);
+                                                  });
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  labelText: "0 < A < X",
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.red,
+                                                        width: 1.0),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  border: InputBorder.none,
+                                                  counter: const SizedBox(),
+                                                ),
+                                                maxLines: 1,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextFormField(
+                                                controller: txt1,
+                                                validator: (val) {
+                                                  if (val.isEmpty) {
+                                                    return 'Obligatoir';
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                                onChanged: (val) {
+                                                  setState(() {
+                                                    b = int.parse(val);
+                                                  });
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  labelText: "0 < B < Y",
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.red,
+                                                        width: 1.0),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  border: InputBorder.none,
+                                                  counter: const SizedBox(),
+                                                ),
+                                                maxLines: 1,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text(
+                                        "Consomation",
+                                        style: GoogleFonts.lato(
+                                          color: Color(0XFF2163CB),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 17,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .4,
+                                        child: Form(
+                                          key: _formKey1,
+                                          child: Column(
+                                            children: <Widget>[
+                                              TextFormField(
+                                                controller: txt2,
+                                                validator: (val) {
+                                                  if (val.isEmpty) {
+                                                    return 'Obligatoir';
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                                onChanged: (val) {
+                                                  setState(() {
+                                                    c = int.parse(val);
+                                                  });
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  labelText: "0 < A < X",
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.red,
+                                                        width: 1.0),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  border: InputBorder.none,
+                                                  counter: const SizedBox(),
+                                                ),
+                                                maxLines: 1,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextFormField(
+                                                controller: txt3,
+                                                validator: (val) {
+                                                  if (val.isEmpty) {
+                                                    return 'Obligatoir';
+                                                  } else {
+                                                    return null;
+                                                  }
+                                                },
+                                                onChanged: (val) {
+                                                  setState(() {
+                                                    d = int.parse(val);
+                                                  });
+                                                },
+                                                decoration:
+                                                    const InputDecoration(
+                                                  labelText: "0 < B < Y",
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.red,
+                                                        width: 1.0),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                        color: Colors.grey,
+                                                        width: 1.0),
+                                                  ),
+                                                  border: InputBorder.none,
+                                                  counter: const SizedBox(),
+                                                ),
+                                                maxLines: 1,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

@@ -48,7 +48,7 @@ class _ActionState extends State<ActionB> {
               bottom: MediaQuery.of(context).size.height * .035,
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width * .5,
@@ -87,6 +87,7 @@ class _ActionState extends State<ActionB> {
                     ),
                   ),
                 ),
+                /*
                 Container(
                   width: MediaQuery.of(context).size.width * .14,
                   height: MediaQuery.of(context).size.width * .14,
@@ -96,18 +97,19 @@ class _ActionState extends State<ActionB> {
                     ),
                     color: Color(0XFFF0A12F),
                     onPressed: () {
-                      /*
+                      
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => ALL()));
-                          */
-                      //ajouter au stco ou enlever du stock
+                          
+                      
                     },
                     child: Icon(
-                      FontAwesomeIcons.exchangeAlt,
+                      FontAwesomeIcons.table,
                       color: Colors.white,
                     ),
                   ),
                 ),
+                */
               ],
             ),
           ),

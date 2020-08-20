@@ -45,6 +45,20 @@ class _HomePageState extends State<HomePage> {
   }
   */
 
+  _cal(int qte, int seuil) {
+    if (qte > seuil) {
+      return Colors.green;
+    } else {
+      if (qte == seuil) {
+        return Colors.orangeAccent;
+      } else {
+        if (qte < seuil) {
+          return Colors.redAccent;
+        }
+      }
+    }
+  }
+
   _check() async {
     List<Produitf> productList = await DatabaseProvider.db.getProduitsF();
     productList.forEach((element) {
@@ -273,7 +287,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: <Widget>[
                   GetName(),
-                  _produits.length < 2
+                  _produits.length == 0
                       ? Expanded(
                           child: Center(
                               child: Text(
@@ -286,110 +300,16 @@ class _HomePageState extends State<HomePage> {
                       : Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(top: 25, bottom: 15),
-                            child: ListView(
-                              physics: BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 15.0, left: 25),
-                                  child: Container(
-                                    padding: EdgeInsets.all(15),
-                                    width:
-                                        MediaQuery.of(context).size.width * .4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(60),
-                                          topRight: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20),
-                                          bottomRight: Radius.circular(20)),
-                                      color: Color(0XFF7771F6),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text(
-                                              _produits[0].ref,
-                                              style: GoogleFonts.lato(
-                                                color: Colors.white,
-                                                fontSize: 30,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Stock Alert: " +
-                                                  _produits[0]
-                                                      .stockAl
-                                                      .toString(),
-                                              style: GoogleFonts.lato(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 15.0),
-                                  child: Container(
-                                    padding: EdgeInsets.all(15),
-                                    width:
-                                        MediaQuery.of(context).size.width * .4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(60),
-                                          topRight: Radius.circular(20),
-                                          bottomLeft: Radius.circular(20),
-                                          bottomRight: Radius.circular(20)),
-                                      color: Color(0XFF938DF8),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Text(
-                                              _produits[1].ref,
-                                              style: GoogleFonts.lato(
-                                                color: Colors.white,
-                                                fontSize: 30,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Stock Alert: " +
-                                                  _produits[1]
-                                                      .stockAl
-                                                      .toString(),
-                                              style: GoogleFonts.lato(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 15.0),
-                                  child: Opacity(
-                                    opacity: .5,
+                            child: ListView.builder(
+                                physics: BouncingScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                itemCount: _produits.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: 15.0, left: 25),
                                     child: Container(
+                                      padding: EdgeInsets.all(15),
                                       width: MediaQuery.of(context).size.width *
                                           .4,
                                       decoration: BoxDecoration(
@@ -398,40 +318,60 @@ class _HomePageState extends State<HomePage> {
                                             topRight: Radius.circular(20),
                                             bottomLeft: Radius.circular(20),
                                             bottomRight: Radius.circular(20)),
-                                        color: Color(0XFF50818A),
+                                        color: _cal(_produits[index].qq,
+                                            _produits[index].stockAl),
                                       ),
-                                      child: MaterialButton(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(60),
-                                              topRight: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                              bottomRight: Radius.circular(20)),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      new ALL()));
-                                        },
-                                        child: Center(
-                                          child: Text(
-                                            "Voir tout les articles",
-                                            textAlign: TextAlign.end,
-                                            style: GoogleFonts.lato(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400,
-                                            ),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Text(
+                                                _produits[index].ref,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                style: GoogleFonts.lato(
+                                                  color: Colors.white,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                "Stock Actuel: " +
+                                                    _produits[index]
+                                                        .qq
+                                                        .toString(),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                style: GoogleFonts.lato(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                "Stock Alert: " +
+                                                    _produits[index]
+                                                        .stockAl
+                                                        .toString(),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                                style: GoogleFonts.lato(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                                  );
+                                }),
                           ),
                         )
                 ],
