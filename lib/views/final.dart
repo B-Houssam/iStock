@@ -108,7 +108,8 @@ class _AjouterFiveState extends State<AjouterFive> {
 
   _getCroisement() {
     for (var i = 0; i < _produitsOrdC.length; i++) {
-      if (_produitsOrdC[i].cout < widget.a) {
+      if (_produitsOrdC[i].cout >= widget.a) {
+        print(_produitsOrdC[i].ref);
         _crC.add(_produitsOrdC[i]);
       }
     }
@@ -116,7 +117,8 @@ class _AjouterFiveState extends State<AjouterFive> {
 
   _getCroisementC() {
     for (var i = 0; i < _produitsOrdCs.length; i++) {
-      if (_produitsOrdCs[i].consomation < widget.c) {
+      if (_produitsOrdCs[i].consomation >= widget.c) {
+        print(_produitsOrdCs[i].ref);
         _crS.add(_produitsOrdCs[i]);
       }
     }
