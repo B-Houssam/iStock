@@ -5,7 +5,7 @@ import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produit.dart';
 
 import 'HomePage.dart';
-import 'ajouterSeuil.dart';
+//import 'ajouterSeuil.dart';
 
 class AjouterTree extends StatefulWidget {
   AjouterTree({Key key}) : super(key: key);
@@ -16,6 +16,7 @@ class AjouterTree extends StatefulWidget {
 
 class _AjouterTreeState extends State<AjouterTree> {
   List<Produit> _produitsOrdC = [];
+  /*
   List<Produit> _produitsOrdCs = [];
   List<Produit> _produitsOrdQ = [];
   List<int> cumule = [];
@@ -24,7 +25,7 @@ class _AjouterTreeState extends State<AjouterTree> {
   int coutTotal = 0;
   int qteTotal = 0;
   int consTotal = 0;
-  //List<CouData> data = [];
+  */
 
   _fetchProducts() async {
     List<Produit> productList = await DatabaseProvider.db.getProduitsOrdre();
@@ -33,11 +34,12 @@ class _AjouterTreeState extends State<AjouterTree> {
       _produitsOrdC = productList;
     });
 
-    _getTotalCout();
-    _getCumules();
+    //_getTotalCout();
+    //_getCumules();
     //_buildData();
   }
 
+/*
   _fetchQte() async {
     List<Produit> productList = await DatabaseProvider.db.getProduitsOrdreQte();
 
@@ -111,13 +113,13 @@ class _AjouterTreeState extends State<AjouterTree> {
       }
     }
   }
-
+*/
   @override
   void initState() {
     super.initState();
     _fetchProducts();
-    _fetchConso();
-    _fetchQte();
+    //_fetchConso();
+    //_fetchQte();
   }
 
   @override
@@ -160,35 +162,12 @@ class _AjouterTreeState extends State<AjouterTree> {
                           ),
                         ),
                         Text(
-                          "Visualisation des entrés",
+                          "Visualisation des articles",
                           style: GoogleFonts.lato(
                             color: Color(0XFF2163CB),
                             fontWeight: FontWeight.w600,
+                            fontSize: 20,
                           ),
-                        ),
-                        Container(
-                          height: MediaQuery.of(context).size.width * .13,
-                          child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(11),
-                              ),
-                              color: Colors.white,
-                              onPressed: () {
-                                Navigator.pushAndRemoveUntil(
-                                        context,
-                                        new MaterialPageRoute(
-                                            builder: (context) =>
-                                                new AjouterFour()),
-                                        (Route<dynamic> route) => false)
-                                    .then((value) => setState(() {}));
-                              },
-                              child: Text(
-                                "Suivant",
-                                style: GoogleFonts.lato(
-                                  color: Color(0XFF2163CB),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              )),
                         ),
                       ]),
                 ),
@@ -200,14 +179,24 @@ class _AjouterTreeState extends State<AjouterTree> {
                         color: Colors.white,
                       ),
                       alignment: Alignment.center,
-                      child: _produitsOrdC.length == 0 ||
-                              _produitsOrdCs.length == 0 ||
-                              _produitsOrdQ.length == 0
+                      child: _produitsOrdC.length == 0
                           ? Center(
-                              child: CircularProgressIndicator(
-                                backgroundColor: Colors.grey[300],
-                                valueColor:
-                                    AlwaysStoppedAnimation(Color(0XFF2163CB)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    "Ajouter des articles !",
+                                    style: TextStyle(color: Colors.grey),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  CircularProgressIndicator(
+                                    backgroundColor: Colors.grey[300],
+                                    valueColor: AlwaysStoppedAnimation(
+                                        Colors.grey[500]),
+                                  ),
+                                ],
                               ),
                             )
                           : ListView(
@@ -222,14 +211,6 @@ class _AjouterTreeState extends State<AjouterTree> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(
-                                        "Cout: ",
-                                        style: GoogleFonts.lato(
-                                          color: Color(0XFF2163CB),
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 25,
-                                        ),
-                                      ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -269,7 +250,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                                     40) /
                                                 4,
                                             child: Text(
-                                              "% Cout",
+                                              "Consomation",
                                               style: GoogleFonts.lato(
                                                   fontWeight: FontWeight.w700,
                                                   color: Color(0XFF2163CB)),
@@ -278,7 +259,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                           Expanded(
                                             child: Container(
                                               child: Text(
-                                                "% cumulé",
+                                                "NBd pièces",
                                                 style: GoogleFonts.lato(
                                                     fontWeight: FontWeight.w700,
                                                     color: Color(0XFF2163CB)),
@@ -293,8 +274,7 @@ class _AjouterTreeState extends State<AjouterTree> {
                                 ),
                                 Container(
                                   color: Colors.grey[100],
-                                  height:
-                                      MediaQuery.of(context).size.height * .25,
+                                  height: MediaQuery.of(context).size.height,
                                   child: ListView.separated(
                                     padding: EdgeInsets.only(
                                         bottom: 20,
@@ -343,20 +323,15 @@ class _AjouterTreeState extends State<AjouterTree> {
                                                         .width -
                                                     40) /
                                                 4,
-                                            child: Text("" +
-                                                ((_produitsOrdC[index].cout) *
-                                                        100 /
-                                                        coutTotal)
-                                                    .round()
-                                                    .toString()),
+                                            child: Text((_produitsOrdC[index]
+                                                    .consomation)
+                                                .toString()),
                                           ),
                                           Expanded(
                                             child: Container(
-                                              child: cumule.length != 0
-                                                  ? Text(
-                                                      cumule[index].toString(),
-                                                    )
-                                                  : Text("-"),
+                                              child: Text(
+                                                  (_produitsOrdC[index].qte)
+                                                      .toString()),
                                               alignment: Alignment.centerRight,
                                             ),
                                           ),
@@ -366,314 +341,6 @@ class _AjouterTreeState extends State<AjouterTree> {
                                   ),
                                 ),
                                 /////////////
-                                Container(
-                                  padding: EdgeInsets.only(left: 20, right: 20),
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 100,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        "Consomation: ",
-                                        style: GoogleFonts.lato(
-                                          color: Color(0XFF2163CB),
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 25,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Container(
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              "Référence",
-                                              style: GoogleFonts.lato(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color(0XFF2163CB)),
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              "Conso",
-                                              style: GoogleFonts.lato(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color(0XFF2163CB)),
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              "% Conso",
-                                              style: GoogleFonts.lato(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color(0XFF2163CB)),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              child: Text(
-                                                "% cumulé",
-                                                style: GoogleFonts.lato(
-                                                    fontWeight: FontWeight.w700,
-                                                    color: Color(0XFF2163CB)),
-                                              ),
-                                              alignment: Alignment.centerRight,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  color: Colors.grey[100],
-                                  height:
-                                      MediaQuery.of(context).size.height * .25,
-                                  child: ListView.separated(
-                                    padding: EdgeInsets.only(
-                                        bottom: 20,
-                                        left: 20,
-                                        right: 20,
-                                        top: 10),
-                                    physics: BouncingScrollPhysics(),
-                                    separatorBuilder: (context, index) {
-                                      return Divider(
-                                        color: Colors.grey[300],
-                                      );
-                                    },
-                                    itemCount: _produitsOrdC.length,
-                                    itemBuilder: (context, index) {
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Container(
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              _produitsOrdCs[index].ref,
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              _produitsOrdCs[index]
-                                                  .consomation
-                                                  .toString(),
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text("" +
-                                                ((_produitsOrdCs[index]
-                                                            .consomation) *
-                                                        100 /
-                                                        consTotal)
-                                                    .round()
-                                                    .toString()),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              child: cumuleC.length != 0
-                                                  ? Text(
-                                                      cumuleC[index].toString(),
-                                                    )
-                                                  : Text("-"),
-                                              alignment: Alignment.centerRight,
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ),
-                                ///////////////
-                                Container(
-                                  padding: EdgeInsets.only(left: 20, right: 20),
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 100,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Text(
-                                        "Nombre de pièces: ",
-                                        style: GoogleFonts.lato(
-                                          color: Color(0XFF2163CB),
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 25,
-                                        ),
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Container(
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              "Référence",
-                                              style: GoogleFonts.lato(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color(0XFF2163CB)),
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              "NdP",
-                                              style: GoogleFonts.lato(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color(0XFF2163CB)),
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              "% NdP",
-                                              style: GoogleFonts.lato(
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Color(0XFF2163CB)),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              child: Text(
-                                                "% cumulé",
-                                                style: GoogleFonts.lato(
-                                                    fontWeight: FontWeight.w700,
-                                                    color: Color(0XFF2163CB)),
-                                              ),
-                                              alignment: Alignment.centerRight,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  color: Colors.grey[100],
-                                  height:
-                                      MediaQuery.of(context).size.height * .25,
-                                  child: ListView.separated(
-                                    padding: EdgeInsets.only(
-                                        bottom: 20,
-                                        left: 20,
-                                        right: 20,
-                                        top: 10),
-                                    physics: BouncingScrollPhysics(),
-                                    separatorBuilder: (context, index) {
-                                      return Divider(
-                                        color: Colors.grey[300],
-                                      );
-                                    },
-                                    itemCount: _produitsOrdC.length,
-                                    itemBuilder: (context, index) {
-                                      return Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Container(
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              _produitsOrdQ[index].ref,
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text(
-                                              _produitsOrdQ[index]
-                                                  .qte
-                                                  .toString(),
-                                            ),
-                                          ),
-                                          Container(
-                                            alignment: Alignment.center,
-                                            width: (MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    40) /
-                                                4,
-                                            child: Text("" +
-                                                ((_produitsOrdQ[index].qte) *
-                                                        100 /
-                                                        qteTotal)
-                                                    .round()
-                                                    .toString()),
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              child: cumuleQ.length != 0
-                                                  ? Text(
-                                                      cumuleQ[index].toString(),
-                                                    )
-                                                  : Text("-"),
-                                              alignment: Alignment.centerRight,
-                                            ),
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  ),
-                                ),
                               ],
                             )))
             ],

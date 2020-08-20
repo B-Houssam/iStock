@@ -107,16 +107,16 @@ class _AjouterFiveState extends State<AjouterFive> {
   }
 
   _getCroisement() {
-    for (var i = 0; i < cumule.length; i++) {
-      if (cumule[i] < widget.a) {
+    for (var i = 0; i < _produitsOrdC.length; i++) {
+      if (_produitsOrdC[i].cout < widget.a) {
         _crC.add(_produitsOrdC[i]);
       }
     }
   }
 
   _getCroisementC() {
-    for (var i = 0; i < cumuleC.length; i++) {
-      if (cumuleC[i] < widget.c) {
+    for (var i = 0; i < _produitsOrdCs.length; i++) {
+      if (_produitsOrdCs[i].consomation < widget.c) {
         _crS.add(_produitsOrdCs[i]);
       }
     }
@@ -361,12 +361,15 @@ class _AjouterFiveState extends State<AjouterFive> {
                                     padding:
                                         EdgeInsets.only(right: 20, left: 20),
                                     color: (() {
-                                      if (cumule[index] < widget.a &&
-                                          cumule[index] > 0) {
+                                      if (_produitsOrdC[index].cout <=
+                                              widget.a &&
+                                          _produitsOrdC[index].cout > 0) {
                                         return Colors.red[100];
                                       } else {
-                                        if (cumule[index] >= widget.a &&
-                                            cumule[index] < widget.b) {
+                                        if (_produitsOrdC[index].cout >
+                                                widget.a &&
+                                            _produitsOrdC[index].cout <=
+                                                widget.b) {
                                           return Colors.green[100];
                                         } else {
                                           return Colors.blue[100];
@@ -416,12 +419,16 @@ class _AjouterFiveState extends State<AjouterFive> {
                                           child: Container(
                                             alignment: Alignment.centerRight,
                                             child: Text(((() {
-                                              if (cumule[index] < widget.a &&
-                                                  cumule[index] > 0) {
+                                              if (_produitsOrdC[index].cout <=
+                                                      widget.a &&
+                                                  _produitsOrdC[index].cout >
+                                                      0) {
                                                 return "A";
                                               } else {
-                                                if (cumule[index] > widget.a &&
-                                                    cumule[index] < widget.b) {
+                                                if (_produitsOrdC[index].cout >
+                                                        widget.a &&
+                                                    _produitsOrdC[index].cout <=
+                                                        widget.b) {
                                                   return "B";
                                                 } else {
                                                   return "C";
@@ -515,7 +522,6 @@ class _AjouterFiveState extends State<AjouterFive> {
                               ),
                             ),
                             Container(
-                              //color: Colors.grey[100],
                               height: MediaQuery.of(context).size.height * .25,
                               child: ListView.builder(
                                 padding: EdgeInsets.only(bottom: 20, top: 10),
@@ -526,12 +532,16 @@ class _AjouterFiveState extends State<AjouterFive> {
                                     padding:
                                         EdgeInsets.only(right: 20, left: 20),
                                     color: (() {
-                                      if (cumuleC[index] < widget.c &&
-                                          cumuleC[index] > 0) {
+                                      if (_produitsOrdCs[index].consomation <=
+                                              widget.c &&
+                                          _produitsOrdCs[index].consomation >
+                                              0) {
                                         return Colors.red[100];
                                       } else {
-                                        if (cumuleC[index] >= widget.c &&
-                                            cumuleC[index] < widget.d) {
+                                        if (_produitsOrdCs[index].consomation >
+                                                widget.c &&
+                                            _produitsOrdCs[index].consomation <=
+                                                widget.d) {
                                           return Colors.green[100];
                                         } else {
                                           return Colors.blue[100];
@@ -580,12 +590,20 @@ class _AjouterFiveState extends State<AjouterFive> {
                                         Expanded(
                                           child: Container(
                                             child: Text(((() {
-                                              if (cumuleC[index] < widget.c &&
-                                                  cumuleC[index] > 0) {
+                                              if (_produitsOrdCs[index]
+                                                          .consomation <=
+                                                      widget.c &&
+                                                  _produitsOrdCs[index]
+                                                          .consomation >
+                                                      0) {
                                                 return "A";
                                               } else {
-                                                if (cumuleC[index] > widget.c &&
-                                                    cumuleC[index] < widget.d) {
+                                                if (_produitsOrdCs[index]
+                                                            .consomation >
+                                                        widget.c &&
+                                                    _produitsOrdCs[index]
+                                                            .consomation <=
+                                                        widget.d) {
                                                   return "B";
                                                 } else {
                                                   return "C";

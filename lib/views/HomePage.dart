@@ -3,7 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produitf.dart';
-import 'package:iStock/widgets/mainView/custom-drawer.dart';
+import 'package:iStock/views/detalisAvant.dart';
+//import 'package:iStock/widgets/mainView/custom-drawer.dart';
 import 'package:iStock/widgets/mainView/action-bar.dart';
 import 'package:iStock/widgets/mainView/get-username.dart';
 import 'List-produits.dart';
@@ -90,7 +91,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
-      drawer: Draw(),
+      //drawer: Draw(),
       backgroundColor: Color(0XFFE9E9F9),
       body: SafeArea(
         child: Column(
@@ -104,18 +105,27 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      width: MediaQuery.of(context).size.width * .13,
-                      height: MediaQuery.of(context).size.width * .13,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(11),
-                        ),
-                        color: Colors.white,
-                        onPressed: () => _scaffoldKey.currentState.openDrawer(),
-                        child: Icon(
-                          FontAwesomeIcons.bars,
-                          color: Color(0XFF2163CB),
-                          size: 25,
+                      width: MediaQuery.of(context).size.width * .16,
+                      height: MediaQuery.of(context).size.width * .16,
+                      child: Center(
+                        child: MaterialButton(
+                          minWidth: MediaQuery.of(context).size.width * .13,
+                          height: MediaQuery.of(context).size.width * .13,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(11),
+                          ),
+                          color: Color(0XFFF0A12F),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AjouterTree()));
+                          },
+                          child: Icon(
+                            FontAwesomeIcons.table,
+                            color: Colors.white,
+                            size: 25,
+                          ),
                         ),
                       ),
                     ),

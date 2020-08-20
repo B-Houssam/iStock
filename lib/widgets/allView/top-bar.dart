@@ -45,7 +45,7 @@ class _BackBarState extends State<BackBar> {
                 ),
               ),
               Text(
-                "Articles",
+                "Articles à Suivre",
                 style: GoogleFonts.lato(
                   color: Color(0XFF2163CB),
                   fontWeight: FontWeight.w600,

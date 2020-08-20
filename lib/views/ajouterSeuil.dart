@@ -14,10 +14,10 @@ class AjouterFour extends StatefulWidget {
 class _AjouterFourState extends State<AjouterFour> {
   final _formKey = GlobalKey<FormState>();
   final _formKey1 = GlobalKey<FormState>();
-  int a = 75;
-  int b = 90;
-  int c = 75;
-  int d = 90;
+  int a = 1000;
+  int b = 3000;
+  int c = 10;
+  int d = 30;
 
   var txt = TextEditingController();
   var txt1 = TextEditingController();
@@ -27,10 +27,10 @@ class _AjouterFourState extends State<AjouterFour> {
   @override
   void initState() {
     super.initState();
-    txt.text = "75";
-    txt1.text = "90";
-    txt2.text = "75";
-    txt3.text = '90';
+    txt.text = "1000";
+    txt1.text = "3000";
+    txt2.text = "10";
+    txt3.text = '30';
   }
 
   @override
@@ -170,6 +170,9 @@ class _AjouterFourState extends State<AjouterFour> {
                                             children: <Widget>[
                                               TextFormField(
                                                 controller: txt,
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                ),
                                                 validator: (val) {
                                                   if (val.isEmpty) {
                                                     return 'Obligatoir';
@@ -224,6 +227,9 @@ class _AjouterFourState extends State<AjouterFour> {
                                               ),
                                               TextFormField(
                                                 controller: txt1,
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                ),
                                                 validator: (val) {
                                                   if (val.isEmpty) {
                                                     return 'Obligatoir';
@@ -306,6 +312,9 @@ class _AjouterFourState extends State<AjouterFour> {
                                             children: <Widget>[
                                               TextFormField(
                                                 controller: txt2,
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                ),
                                                 validator: (val) {
                                                   if (val.isEmpty) {
                                                     return 'Obligatoir';
@@ -360,6 +369,9 @@ class _AjouterFourState extends State<AjouterFour> {
                                               ),
                                               TextFormField(
                                                 controller: txt3,
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                ),
                                                 validator: (val) {
                                                   if (val.isEmpty) {
                                                     return 'Obligatoir';
