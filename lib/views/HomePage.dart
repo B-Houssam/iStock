@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iStock/db/db-provider.dart';
 import 'package:iStock/models/produitf.dart';
 import 'package:iStock/views/detalisAvant.dart';
-//import 'package:iStock/widgets/mainView/custom-drawer.dart';
 import 'package:iStock/widgets/mainView/action-bar.dart';
 import 'package:iStock/widgets/mainView/get-username.dart';
 import 'List-produits.dart';
@@ -39,12 +38,6 @@ class _HomePageState extends State<HomePage> {
       _produits = productList;
     });
   }
-
-/*
-  _all(int qte, int seuil) {
-    return (((qte * 100) / seuil));
-  }
-  */
 
   _cal(int qte, int seuil) {
     if (qte > seuil) {
@@ -91,7 +84,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
-      //drawer: Draw(),
       backgroundColor: Color(0XFFE9E9F9),
       body: SafeArea(
         child: Column(
@@ -187,7 +179,6 @@ class _HomePageState extends State<HomePage> {
                           children: <Widget>[
                             _icon,
                             Container(
-                              //color: Colors.black,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -232,7 +223,7 @@ class _HomePageState extends State<HomePage> {
                                   Row(
                                     children: <Widget>[
                                       Text(
-                                        "Vérifier list articles",
+                                        "Vérifier liste articles",
                                         style: GoogleFonts.lato(
                                           color: Colors.white,
                                         ),

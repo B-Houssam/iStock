@@ -82,9 +82,8 @@ class _AjouterFourState extends State<AjouterFour> {
                             color: Colors.white,
                             onPressed: () {
                               //
-                              if (_formKey.currentState.validate()) {
-                                //print(
-                                //  a.toString() + b.toString() + c.toString());
+                              if (_formKey.currentState.validate() &&
+                                  _formKey1.currentState.validate()) {
                                 _formKey.currentState.save();
                                 Navigator.pushAndRemoveUntil(
                                     context,
@@ -118,9 +117,8 @@ class _AjouterFourState extends State<AjouterFour> {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            //topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30)),
+                        borderRadius:
+                            BorderRadius.only(topRight: Radius.circular(30)),
                         color: Colors.white,
                       ),
                       alignment: Alignment.center,
@@ -132,7 +130,7 @@ class _AjouterFourState extends State<AjouterFour> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "Spécifier Les Seuils par classes.",
+                                "Spécifier Les seuils par classes.",
                                 style: GoogleFonts.lato(
                                   color: Color(0XFF2163CB),
                                   fontWeight: FontWeight.w600,
