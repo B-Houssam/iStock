@@ -32,17 +32,17 @@ gardez à l'esprit qu'il s'agit d'une application intégrée qui peut être amé
 
 ### Home screen
 
-screen-shots/flutter_01.png
+https://github.com/B-Houssam/iStock/screen-shots/flutter_01.png
 
 ### Add Articles
 
-screen-shots/flutter_02.png
+https://github.com/B-Houssam/iStock/screen-shots/flutter_02.png
 
-screen-shots/flutter_03.png
+https://github.com/B-Houssam/iStock/screen-shots/flutter_03.png
 
 ### List of articles
 
-screen-shots/flutter_04.png
+https://github.com/B-Houssam/iStock/screen-shots/flutter_04.png
 
 ---
 
