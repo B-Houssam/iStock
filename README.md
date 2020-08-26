@@ -28,7 +28,21 @@ gardez à l'esprit qu'il s'agit d'une application intégrée qui peut être amé
 
 ### Screen shots
 
+- note that the screens are taken on a empty database (fresh install).
 
+## Home screen
+
+screen-shots/flutter_01.png
+
+## Add Articles
+
+screen-shots/flutter_02.png
+
+screen-shots/flutter_03.png
+
+## List of articles
+
+screen-shots/flutter_04.png
 
 ---
 
