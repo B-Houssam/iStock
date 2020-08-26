@@ -1,6 +1,6 @@
 # iStock
 
-English:
+### English:
 
 iStock is a flutter made application.
 
@@ -12,11 +12,11 @@ The user will also be able to see the final products and results.
 
 keep in mind that this is an in-built app that can be improved ( for example: having the entries from a server or an existing database, or working with a web API ... ). 
 
-Français:
+### Français:
 
 iStock est une application crée en flutter.
 
-Le but de l'application est d'aider à maintenir un stockage sain en classant les articles en 3 classes avec la méthode ABC.
+Le but de l'application est d'aider à maintenir un stockage sain en classant les articles en 3 classes avec la méthode [ABC](https://fr.wikipedia.org/wiki/Analyse_ABC)
 
 L'utilisateur peut ajouter des artciles dans le stockage, puis le système les classera et alertera l'utilisateur si la quantité est inférieure à celle voulue (de caurse après avoir fait tous les calculs nécessaires).
 
@@ -24,10 +24,13 @@ L'utilisateur pourra également voir les produits finaux et les résultats.
 
 gardez à l'esprit qu'il s'agit d'une application intégrée qui peut être améliorée (par exemple: avoir les entrées d'un serveur ou d'une base de données existante, ou travailler avec une API Web ...).
 
+---
+
 ### Screen shots
 
 
 
+---
 
 ## Getting Started
 
