@@ -45,6 +45,8 @@ https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_03.png
 https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_04.png
 
 ---
+- Design inspiration from [dribbble.com](dribbble.com)
+---
 
 ## Getting Started
 
