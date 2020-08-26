@@ -4,7 +4,7 @@
 
 iStock is a flutter made application.
 
-The goal of the app is to help maintaining a healthy storage by classifying articles into 3 classes with the ABC method.
+The goal of the app is to help maintaining a healthy storage by classifying articles into 3 classes with the [ABC](https://fr.wikipedia.org/wiki/Analyse_ABC) method.
 
 The user can add artciles into the storage, then the system will classify them and alert the user if the quantity in less than wanted (of caurse after making all necessary calculations ).
 
