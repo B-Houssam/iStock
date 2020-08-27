@@ -268,13 +268,11 @@ class _AjouterOneState extends State<AjouterOne> {
                                           return null;
                                         }
                                       },
-
                                       onChanged: (val) {
                                         setState(() {
                                           items[index].cout = int.parse(val);
                                         });
                                       },
-
                                       decoration: const InputDecoration(
                                         focusedBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
@@ -292,7 +290,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                           borderSide: BorderSide(
                                               color: Colors.red, width: 1.0),
                                         ),
-                                        labelText: 'Cout',
+                                        labelText: 'Cout total',
                                         border: InputBorder.none,
                                         counter: const SizedBox(),
                                       ),
@@ -301,7 +299,6 @@ class _AjouterOneState extends State<AjouterOne> {
                                       maxLength: 1024,
                                       textCapitalization:
                                           TextCapitalization.sentences,
-                                      //readOnly: !_note.state.canEdit,
                                     ),
                                   ),
                                   SizedBox(
