@@ -48,7 +48,7 @@ https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_04.png
 ---
 - Design inspiration from [dribbble.com](dribbble.com)
 ---
-- Local database used with help of the SQlite library.
+- Local database used with help of the [SQlite](https://www.sqlite.org/index.html) library.
 ---
 
 ## Getting Started
