@@ -3,6 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:url_launcher/url_launcher.dart';
 
+/* Note that this class is not used in this project
+/* i kept it for the sake of further improvments or projects!
+*/
+*/
+
 class Draw extends StatefulWidget {
   Draw({Key key}) : super(key: key);
 
