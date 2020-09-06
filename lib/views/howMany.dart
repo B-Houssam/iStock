@@ -147,7 +147,7 @@ class _AjouterTwoState extends State<AjouterTwo> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                "Combien d'article voulez \nvous ajouter ?",
+                                "Combien d'article voulez \nvous introduire ?",
                                 style: GoogleFonts.lato(
                                   color: Color(0XFF2163CB),
                                   fontWeight: FontWeight.w600,
@@ -178,6 +178,10 @@ class _AjouterTwoState extends State<AjouterTwo> {
                                           });
                                         },
                                         decoration: const InputDecoration(
+                                          suffix: Text(
+                                            "articles",
+                                            style: TextStyle(fontSize: 13),
+                                          ),
                                           focusedBorder: OutlineInputBorder(
                                             borderSide: BorderSide(
                                                 color: Colors.grey, width: 1.0),

@@ -235,6 +235,10 @@ class _AjouterOneState extends State<AjouterOne> {
                                           borderSide: BorderSide(
                                               color: Colors.grey, width: 1.0),
                                         ),
+                                        suffix: Text(
+                                          "pièces",
+                                          style: TextStyle(fontSize: 13),
+                                        ),
                                         errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
                                               color: Colors.red, width: 1.0),

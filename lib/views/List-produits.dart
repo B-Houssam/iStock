@@ -271,17 +271,20 @@ class _ALLState extends State<ALL> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
-                                      "Point de commande: " +
-                                          _produits[index]
-                                              .ptc
-                                              .toStringAsFixed(3),
-                                      style: GoogleFonts.lato(
-                                        color: Color(0XFF2163CB),
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
+                                    (_produits[index].qq <
+                                            _produits[index].stockAl)
+                                        ? Text(
+                                            "Point de commande: " +
+                                                _produits[index]
+                                                    .ptc
+                                                    .toStringAsFixed(3),
+                                            style: GoogleFonts.lato(
+                                              color: Color(0XFF2163CB),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                            ),
+                                          )
+                                        : SizedBox(),
                                   ],
                                 ),
                                 /*
