@@ -1,17 +1,14 @@
 class Produitv {
-  int coutPas;
   String ref;
-  int coutPos;
-  int nbut;
+
+  int stmax;
   int consoMoy;
   int nbjSecu;
   int delais;
 
   Produitv({
-    this.coutPas,
     this.ref,
-    this.coutPos,
-    this.nbut,
+    this.stmax,
     this.consoMoy,
     this.nbjSecu,
     this.delais,

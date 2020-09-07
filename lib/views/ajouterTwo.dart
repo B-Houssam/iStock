@@ -6,9 +6,6 @@ import 'package:iStock/models/produit.dart';
 import 'package:iStock/models/produitf.dart';
 import 'package:iStock/models/produitv.dart';
 import 'package:iStock/views/HomePage.dart';
-
-import 'dart:math';
-
 import 'package:iStock/views/List-produits.dart';
 
 class Entrees extends StatefulWidget {
@@ -23,7 +20,6 @@ class _EntreesState extends State<Entrees> {
   final keys = List<GlobalKey<FormState>>();
   final items = List<Produitv>();
   final itemsf = List<Produitf>();
-  //var rng = new Random();
 
   @override
   void initState() {
@@ -54,9 +50,7 @@ class _EntreesState extends State<Entrees> {
 
   calcule() {
     for (var i = 0; i < itemsf.length; i++) {
-      double x = (2 * itemsf[i].d * items[i].coutPas) /
-          (items[i].coutPos * items[i].nbut);
-      itemsf[i].qe = sqrt(x);
+      itemsf[i].qe = items[i].stmax - itemsf[i].qq;
       itemsf[i].cadence = itemsf[i].d / itemsf[i].qe;
       itemsf[i].stockSec = items[i].consoMoy * items[i].nbjSecu;
       itemsf[i].ptc =
@@ -163,7 +157,7 @@ class _EntreesState extends State<Entrees> {
                     itemCount: widget.nb.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        height: 330,
+                        height: 230,
                         padding: EdgeInsets.all(20),
                         child: Form(
                           key: keys[index],
@@ -176,7 +170,7 @@ class _EntreesState extends State<Entrees> {
                                 style: GoogleFonts.lato(
                                   color: Color(0XFF2163CB),
                                   fontSize: 20,
-                                  fontWeight: FontWeight.w500,
+                                  fontWeight: FontWeight.w600,
                                 ),
                               ),
                               Row(
@@ -197,7 +191,7 @@ class _EntreesState extends State<Entrees> {
 
                                       onChanged: (val) {
                                         setState(() {
-                                          items[index].coutPas = int.parse(val);
+                                          items[index].stmax = int.parse(val);
                                         });
                                       },
 
@@ -218,114 +212,11 @@ class _EntreesState extends State<Entrees> {
                                           borderSide: BorderSide(
                                               color: Colors.red, width: 1.0),
                                         ),
-                                        labelText: 'Cout d’acquisition',
-                                        labelStyle: TextStyle(
-                                          fontSize: 12,
+                                        labelText: 'Stock Max',
+                                        suffix: Text(
+                                          "pièces",
+                                          style: TextStyle(fontSize: 13),
                                         ),
-                                        border: InputBorder.none,
-                                        counter: const SizedBox(),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      maxLines: 1,
-                                      maxLength: 1024,
-                                      textCapitalization:
-                                          TextCapitalization.sentences,
-                                      //readOnly: !_note.state.canEdit,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Expanded(
-                                    child: TextFormField(
-                                      validator: (val) {
-                                        if (val.isEmpty) {
-                                          return 'Obligatoire';
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-
-                                      onChanged: (val) {
-                                        setState(() {
-                                          items[index].coutPos = int.parse(val);
-                                        });
-                                      },
-
-                                      decoration: const InputDecoration(
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.red, width: 1.0),
-                                        ),
-                                        labelText: 'Cout possession',
-                                        labelStyle: TextStyle(
-                                          fontSize: 12,
-                                        ),
-                                        border: InputBorder.none,
-                                        counter: const SizedBox(),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      maxLines: 1,
-                                      maxLength: 1024,
-                                      textCapitalization:
-                                          TextCapitalization.sentences,
-                                      //readOnly: !_note.state.canEdit,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * .45,
-                                    child: TextFormField(
-                                      validator: (val) {
-                                        if (val.isEmpty) {
-                                          return 'Obligatoire';
-                                        } else {
-                                          return null;
-                                        }
-                                      },
-
-                                      onChanged: (val) {
-                                        setState(() {
-                                          items[index].nbut = int.parse(val);
-                                        });
-                                      },
-
-                                      decoration: const InputDecoration(
-                                        focusedBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                        focusedErrorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.grey, width: 1.0),
-                                        ),
-                                        errorBorder: OutlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.red, width: 1.0),
-                                        ),
-                                        labelText: 'Nb° unité de temps',
                                         labelStyle: TextStyle(
                                           fontSize: 12,
                                         ),
@@ -378,6 +269,10 @@ class _EntreesState extends State<Entrees> {
                                               color: Colors.red, width: 1.0),
                                         ),
                                         labelText: 'Conso. Moyenne / jour',
+                                        suffix: Text(
+                                          "pièces par jour",
+                                          style: TextStyle(fontSize: 11),
+                                        ),
                                         labelStyle: TextStyle(
                                           fontSize: 12,
                                         ),
@@ -434,6 +329,10 @@ class _EntreesState extends State<Entrees> {
                                               color: Colors.red, width: 1.0),
                                         ),
                                         labelText: 'Nb° jours sécurité',
+                                        suffix: Text(
+                                          "jours",
+                                          style: TextStyle(fontSize: 13),
+                                        ),
                                         labelStyle: TextStyle(
                                           fontSize: 12,
                                         ),
@@ -484,6 +383,10 @@ class _EntreesState extends State<Entrees> {
                                               color: Colors.red, width: 1.0),
                                         ),
                                         labelText: 'Délai réaprovisionement',
+                                        suffix: Text(
+                                          "jours",
+                                          style: TextStyle(fontSize: 13),
+                                        ),
                                         labelStyle: TextStyle(
                                           fontSize: 12,
                                         ),

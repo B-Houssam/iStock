@@ -149,9 +149,9 @@ class _ALLState extends State<ALL> {
                               children: <Widget>[
                                 Container(
                                   width:
-                                      MediaQuery.of(context).size.width * .15,
+                                      MediaQuery.of(context).size.width * .17,
                                   height:
-                                      MediaQuery.of(context).size.width * .15,
+                                      MediaQuery.of(context).size.width * .17,
                                   decoration: BoxDecoration(
                                     color: _cal(_produits[index].qq,
                                         _produits[index].stockAl),
@@ -165,8 +165,8 @@ class _ALLState extends State<ALL> {
                                         .toString(),
                                     style: GoogleFonts.lato(
                                         color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600),
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.w900),
                                   ),
                                 ),
                                 SizedBox(
@@ -191,7 +191,8 @@ class _ALLState extends State<ALL> {
                                       "Stock Actuel: " +
                                           _produits[index]
                                               .qq
-                                              .toStringAsFixed(1),
+                                              .toStringAsFixed(0) +
+                                          ' pièces',
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
                                         fontWeight: FontWeight.w400,
@@ -205,7 +206,8 @@ class _ALLState extends State<ALL> {
                                       "Qte économique: " +
                                           _produits[index]
                                               .qe
-                                              .toStringAsFixed(3),
+                                              .toStringAsFixed(0) +
+                                          ' pièces',
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
                                         fontWeight: FontWeight.w400,
@@ -233,7 +235,8 @@ class _ALLState extends State<ALL> {
                                       "Stock de sécurité " +
                                           _produits[index]
                                               .stockSec
-                                              .toStringAsFixed(1),
+                                              .toStringAsFixed(0) +
+                                          ' pièces',
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
                                         fontWeight: FontWeight.w400,
@@ -247,7 +250,8 @@ class _ALLState extends State<ALL> {
                                       "Stock d'alert: " +
                                           _produits[index]
                                               .stockAl
-                                              .toStringAsFixed(1),
+                                              .toStringAsFixed(0) +
+                                          ' pièces',
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
                                         fontWeight: FontWeight.w400,
@@ -261,7 +265,8 @@ class _ALLState extends State<ALL> {
                                       "Stock minimal: " +
                                           _produits[index]
                                               .stockmin
-                                              .toStringAsFixed(1),
+                                              .toStringAsFixed(0) +
+                                          ' pièces',
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
                                         fontWeight: FontWeight.w400,
@@ -271,13 +276,14 @@ class _ALLState extends State<ALL> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    (_produits[index].qq <
+                                    (_produits[index].qq <=
                                             _produits[index].stockAl)
                                         ? Text(
                                             "Point de commande: " +
                                                 _produits[index]
                                                     .ptc
-                                                    .toStringAsFixed(3),
+                                                    .toStringAsFixed(0) +
+                                                ' pièces',
                                             style: GoogleFonts.lato(
                                               color: Color(0XFF2163CB),
                                               fontWeight: FontWeight.w400,

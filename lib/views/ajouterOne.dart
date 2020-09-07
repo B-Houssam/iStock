@@ -342,6 +342,10 @@ class _AjouterOneState extends State<AjouterOne> {
                                               color: Colors.red, width: 1.0),
                                         ),
                                         labelText: 'Consomation',
+                                        suffix: Text(
+                                          "pièce par jour",
+                                          style: TextStyle(fontSize: 11),
+                                        ),
                                         border: InputBorder.none,
                                         counter: const SizedBox(),
                                       ),

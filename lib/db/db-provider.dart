@@ -58,7 +58,7 @@ class DatabaseProvider {
         await database.execute("CREATE TABLE $TABLE_FINAL ("
             "$COLUMN_IDD INTEGER PRIMARY KEY,"
             "$COLUMN_REFF TEXT,"
-            "$COLUMN_QTEE DOUBLE,"
+            "$COLUMN_QTEE INTEGER,"
             "$Column_QQ INTEGER,"
             "$Column_D INTEGER,"
             "$COLUMN_CAD DOUBLE,"

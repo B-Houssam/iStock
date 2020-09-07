@@ -2,7 +2,7 @@ import 'package:iStock/db/db-provider.dart';
 
 class Produitf {
   int idd;
-  double qe;
+  int qe;
   int qq;
   int d;
   String ref;
