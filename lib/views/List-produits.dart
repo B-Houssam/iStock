@@ -202,33 +202,39 @@ class _ALLState extends State<ALL> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
-                                      "Qte économique: " +
-                                          _produits[index]
-                                              .qe
-                                              .toStringAsFixed(0) +
-                                          ' pièces',
-                                      style: GoogleFonts.lato(
-                                        color: Color(0XFF2163CB),
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
+                                    (_produits[index].qq <=
+                                            _produits[index].stockAl)
+                                        ? Text(
+                                            "Qte économique: " +
+                                                _produits[index]
+                                                    .qe
+                                                    .toStringAsFixed(0) +
+                                                ' pièces',
+                                            style: GoogleFonts.lato(
+                                              color: Color(0XFF2163CB),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                            ),
+                                          )
+                                        : SizedBox(),
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    Text(
-                                      "Cadence: " +
-                                          _produits[index]
-                                              .cadence
-                                              .round()
-                                              .toString(),
-                                      style: GoogleFonts.lato(
-                                        color: Color(0XFF2163CB),
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                      ),
-                                    ),
+                                    (_produits[index].qq <=
+                                            _produits[index].stockAl)
+                                        ? Text(
+                                            "Cadence: " +
+                                                _produits[index]
+                                                    .cadence
+                                                    .round()
+                                                    .toString(),
+                                            style: GoogleFonts.lato(
+                                              color: Color(0XFF2163CB),
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                            ),
+                                          )
+                                        : SizedBox(),
                                     SizedBox(
                                       height: 5,
                                     ),
@@ -277,21 +283,18 @@ class _ALLState extends State<ALL> {
                                     SizedBox(
                                       height: 5,
                                     ),
-                                    (_produits[index].qq <=
-                                            _produits[index].stockAl)
-                                        ? Text(
-                                            "Point de commande: " +
-                                                _produits[index]
-                                                    .ptc
-                                                    .toStringAsFixed(0) +
-                                                ' pièces',
-                                            style: GoogleFonts.lato(
-                                              color: Color(0XFF2163CB),
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14,
-                                            ),
-                                          )
-                                        : SizedBox(),
+                                    Text(
+                                      "Point de commande: " +
+                                          _produits[index]
+                                              .ptc
+                                              .toStringAsFixed(0) +
+                                          ' pièces',
+                                      style: GoogleFonts.lato(
+                                        color: Color(0XFF2163CB),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                      ),
+                                    )
                                   ],
                                 ),
                                 /*
