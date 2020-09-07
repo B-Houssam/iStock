@@ -223,11 +223,13 @@ class _ALLState extends State<ALL> {
                                     (_produits[index].qq <=
                                             _produits[index].stockAl)
                                         ? Text(
-                                            "Cadence: " +
-                                                _produits[index]
-                                                    .cadence
-                                                    .round()
-                                                    .toString(),
+                                            (_produits[index].cadence < 1)
+                                                ? "Cadence: 1"
+                                                : "Cadence: " +
+                                                    _produits[index]
+                                                        .cadence
+                                                        .round()
+                                                        .toString(),
                                             style: GoogleFonts.lato(
                                               color: Color(0XFF2163CB),
                                               fontWeight: FontWeight.w400,
