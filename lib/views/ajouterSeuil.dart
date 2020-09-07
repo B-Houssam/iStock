@@ -186,6 +186,11 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 decoration:
                                                     const InputDecoration(
                                                   labelText: "A > X",
+                                                  suffix: Text(
+                                                    "€",
+                                                    style:
+                                                        TextStyle(fontSize: 13),
+                                                  ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -243,6 +248,11 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 decoration:
                                                     const InputDecoration(
                                                   labelText: "X > B > Y",
+                                                  suffix: Text(
+                                                    "€",
+                                                    style:
+                                                        TextStyle(fontSize: 13),
+                                                  ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -328,6 +338,11 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 decoration:
                                                     const InputDecoration(
                                                   labelText: "A > X",
+                                                  suffix: Text(
+                                                    "pièces par jours",
+                                                    style:
+                                                        TextStyle(fontSize: 11),
+                                                  ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(
@@ -385,6 +400,11 @@ class _AjouterFourState extends State<AjouterFour> {
                                                 decoration:
                                                     const InputDecoration(
                                                   labelText: "X > B > Y",
+                                                  suffix: Text(
+                                                    "pièces par jours",
+                                                    style:
+                                                        TextStyle(fontSize: 11),
+                                                  ),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderSide: BorderSide(

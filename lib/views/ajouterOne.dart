@@ -296,6 +296,10 @@ class _AjouterOneState extends State<AjouterOne> {
                                         ),
                                         labelText: 'Cout total',
                                         border: InputBorder.none,
+                                        suffix: Text(
+                                          "€",
+                                          style: TextStyle(fontSize: 13),
+                                        ),
                                         counter: const SizedBox(),
                                       ),
                                       keyboardType: TextInputType.number,

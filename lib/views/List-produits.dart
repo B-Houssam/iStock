@@ -221,7 +221,8 @@ class _ALLState extends State<ALL> {
                                       "Cadence: " +
                                           _produits[index]
                                               .cadence
-                                              .toStringAsFixed(3),
+                                              .round()
+                                              .toString(),
                                       style: GoogleFonts.lato(
                                         color: Color(0XFF2163CB),
                                         fontWeight: FontWeight.w400,
