@@ -347,7 +347,7 @@ class _AjouterOneState extends State<AjouterOne> {
                                         ),
                                         labelText: 'Consomation',
                                         suffix: Text(
-                                          "pièce par jour",
+                                          "pièces",
                                           style: TextStyle(fontSize: 11),
                                         ),
                                         border: InputBorder.none,

@@ -339,7 +339,7 @@ class _AjouterFourState extends State<AjouterFour> {
                                                     const InputDecoration(
                                                   labelText: "A > X",
                                                   suffix: Text(
-                                                    "pièces par jours",
+                                                    "pièces",
                                                     style:
                                                         TextStyle(fontSize: 11),
                                                   ),
@@ -401,7 +401,7 @@ class _AjouterFourState extends State<AjouterFour> {
                                                     const InputDecoration(
                                                   labelText: "X > B > Y",
                                                   suffix: Text(
-                                                    "pièces par jours",
+                                                    "pièces",
                                                     style:
                                                         TextStyle(fontSize: 11),
                                                   ),
