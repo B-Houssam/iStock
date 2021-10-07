@@ -29,21 +29,27 @@ gardez à l'esprit qu'il s'agit d'une application intégrée qui peut être amé
 
 ## Screen shots
 
-- note that the screens are taken on a empty database (fresh install).
+**note that the screens are taken on a empty database (fresh install).**
 
 ### Home screen
 
-https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_01.png
+<p align="center">
+ <img src="https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_01.png" alt="drawing" width="200"/> 
+</p>
+
 
 ### Add Articles
 
-https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_02.png
+<p align="center">
+ <img src="https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_02.png" alt="drawing" width="200"/> <img src="https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_03.png" alt="drawing" width="200"/> 
+</p>
 
-https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_03.png
 
 ### List of articles
 
-https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_04.png
+<p align="center">
+ <img src="https://github.com/B-Houssam/iStock/blob/master/screen-shots/flutter_04.png" alt="drawing" width="200"/> 
+</p>
 
 ---
 - Design inspiration from [dribbble.com](dribbble.com)
